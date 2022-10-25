@@ -18,7 +18,7 @@ interface ITable {
 
 const Table: FC<ITable> = (props) => {
   const {tHeaders, tData, isLoading, columnsColor, isMoveToPageRow, pag} = props;
-  const {currencyPerPage, totalCurrency, goToPage, currentPage, changeCurrentPage} = pag;
+  const {currencyPerPage, totalCurrency} = pag;
 
   const navigate = useNavigate();
 
@@ -63,9 +63,6 @@ const Table: FC<ITable> = (props) => {
       <Pagination 
         currencyPerPage={currencyPerPage}
         totalCurrency={totalCurrency}
-        goToPage={goToPage}
-        currentPage={currentPage}
-        changeCurrentPage={changeCurrentPage}
       />
     </Container>
   );

@@ -1,13 +1,13 @@
 import {ChartData, ChartOptions} from 'chart.js';
 import {Colors} from 'styles/vars';
-import {IHistoryItem} from 'types/api';
+import {IHistory} from 'types/api';
 import {line} from 'types/ui';
 
-export function getChartData(cryptoHistory: IHistoryItem[]): ChartData<line> {
+export function getChartData(cryptoHistory: IHistory[]): ChartData<line> {
   const historyChartData: ChartData<line> = {
-    labels: cryptoHistory?.map((historyItem: IHistoryItem) => new Date(historyItem.time).getHours() + 'PM'),
+    labels: cryptoHistory?.map((historyItem: IHistory) => new Date(historyItem.time).getHours() + 'PM'),
     datasets: [{
-      data: cryptoHistory?.map((historyItem: IHistoryItem) => Number(historyItem.priceUsd)),
+      data: cryptoHistory?.map((historyItem: IHistory) => Number(historyItem.priceUsd)),
       fill: true,
       borderColor: Colors.PURPLE,
       backgroundColor: Colors.PURPLE_ALPHA,

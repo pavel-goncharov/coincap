@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {flex, Wraps} from 'styles/mixins/flex';
+import {flex, Justifys, Wraps} from 'styles/mixins/flex';
 import {Colors} from 'styles/vars';
 
 export const ListItem = styled.li`
@@ -13,6 +13,6 @@ export const ListItem = styled.li`
   }
 
   > div {
-    ${flex({fw: Wraps.WRAP, g: '5px 10px'})}
+    ${flex({jc: Justifys.BETWEEN, fw: Wraps.WRAP, g: '5px 10px'})}
   }
 `;

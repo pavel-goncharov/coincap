@@ -6,68 +6,47 @@ import {IListItem, line} from 'types/ui';
 import Button, {BtnModes} from 'components/UI/Button/Button';
 import Checkbox from 'components/UI/Checkbox/Checkbox';
 import List, {ListModes} from 'components/UI/List/List';
-import AddModal from 'components/Common/AddModal/AddModal';
+import AddModal from 'components/Common/BuyingModal/BuyingModal';
 import {BsPlusSquareFill} from 'react-icons/bs';
 import {Main} from 'pages/Currency/Currency.styled';
 import {ChartData} from 'chart.js';
 import {Loader} from 'components/UI/Loader/Loader.styled';
 import {chartOptions, getChartData} from 'utils/chart';
-
+import {useGetAssetOneQuery, useGetHistoryQuery} from 'api/endPoints';
+import {getCurrencyList} from 'pages/Currency/currency.data';
+import {getArgsHistory} from 'utils/currency';
+import {useActions} from 'hooks/useActions';
 
 const Currency: FC = () => {
   const {id} = useParams();
+  
+  const {data: asset, isLoading: isLoadingAsset} = useGetAssetOneQuery(id!);
+  const {data: history, isLoading: isLoadingHistory} = useGetHistoryQuery(getArgsHistory(id!));
+
+  const {setIsActiveBuyingModal} = useActions();
+
   const [currency, setCurrency] = useState<IAsset | null>(null);
-  const [isActiveModal, setIsActiveModal] = useState<boolean>(false);
-  const [checked, setChecked] = useState<boolean>(true);
+  const [checked, setChecked] = useState<boolean>(false);
   const [chartData, setChartData] = useState<ChartData<line> | null>(null);
 
-  const isLoading: boolean = !currency || !chartData;
-
-  useEffect(() => {    
-    fetchCryptoInfo();
-    fetchCryptoHistory();
-  }, []);
-
-  async function fetchCryptoInfo(): Promise<void> {
-    const cryptoInfo = await fetch(`https://api.coincap.io/v2/assets/${id}`)
-      .then(res => res.json())
-      .then(result => result.data);
-    setCurrency(cryptoInfo);
-  }
-
-  async function fetchCryptoHistory(): Promise<void> {
-    const hourInMs: number = 60 * 60 * 1000;
-    const end: number = Date.now();
-    const start: number = end - 25 * hourInMs;
-    const cryptoHistory = await fetch(`https://api.coincap.io/v2/assets/${id}/history?interval=h1&start=${start}&end=${end}`)
-      .then(res => res.json())
-      .then(result => result.data);
-    const historyChartData = getChartData(cryptoHistory);
-    setChartData(historyChartData);
-  }
+  const isLoading: boolean = isLoadingAsset || !currency || isLoadingHistory || !chartData;
+  
+  useEffect(() => {
+    if(asset && history) {
+      setCurrency(asset);
+      const historyChartData = getChartData(history);
+      setChartData(historyChartData);
+    }
+  }, [asset, history]);
 
   function handlerSwitch(): void {
     setChecked(!checked);
   };
 
-  function handlerModalAdd(): void {
-    setIsActiveModal(!isActiveModal);
-  }
-
+  const currencyList: IListItem[] = getCurrencyList(currency!);
   const title: string = `${currency?.name} (${currency?.symbol})`;
   const checkboxTitle: string = 'More';
   const btnTitle: string = 'Add';
-
-  const currencyList: IListItem[] = [
-    {id: 0, title: 'Rank', value: '1', complete: currency?.rank},
-    {id: 1, title: 'Prise', value: '1', complete: currency?.priceUsd},
-    {id: 2, title: 'Market Cap', value: '1', complete: currency?.marketCapUsd},
-    {id: 3, title: 'VWAP(24Hr)', value: '1', complete: currency?.vwap24Hr},
-    {id: 4, title: 'Supply', value: '1', complete: currency?.supply},
-    {id: 5, title: 'Max supply', value: '1', complete: currency?.maxSupply || 'no data'},
-    {id: 6, title: 'Volume(24Hr)', value: '1', complete: currency?.volumeUsd24Hr},
-    {id: 7, title: 'Change(24Hr)', value: '1', complete: currency?.changePercent24Hr}
-  ];
 
   if(isLoading) {
     return <Loader/>
@@ -85,7 +64,7 @@ const Currency: FC = () => {
         mode={BtnModes.DOUBLE}
         title={btnTitle}
         icon={<BsPlusSquareFill/>}
-        handler={handlerModalAdd}
+        handler={setIsActiveBuyingModal}
       />        
       <List
         mode={ListModes.CURRENCY_PAGE}
@@ -98,8 +77,6 @@ const Currency: FC = () => {
       />
       {currency &&
         <AddModal
-          isActive={isActiveModal}
-          handler={handlerModalAdd} 
           currency={currency}
         />
       }

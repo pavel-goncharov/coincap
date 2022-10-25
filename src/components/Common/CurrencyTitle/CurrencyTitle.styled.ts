@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components';
 import {Aligns, Directions, flex, Justifys} from 'styles/mixins/flex';
 import {Colors, Fonts} from 'styles/vars';
-import {TdNameModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
+import {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
 
 interface ICurrencyTitle {
-  mode: TdNameModes;
+  mode: CurrencyTitleModes;
 }
 
 export const Container = styled.div<ICurrencyTitle>`
@@ -27,7 +27,7 @@ export const Container = styled.div<ICurrencyTitle>`
 
   ${(props) => {
     switch (props.mode) {
-      case TdNameModes.TABLE:
+      case CurrencyTitleModes.TABLE:
         return css`
           > div {
             &:nth-child(2) {
@@ -38,7 +38,7 @@ export const Container = styled.div<ICurrencyTitle>`
             }
           }
         `;
-      case TdNameModes.MODAL:
+      case CurrencyTitleModes.MODAL:
         return css`
           span {
             font-size: 1.25rem;

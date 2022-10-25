@@ -2,33 +2,33 @@ import {FC, ReactNode, useEffect, useState} from 'react';
 import Table from 'components/UI/Table/Table';
 import {IAsset} from 'types/api';
 import {IMainTableItem, IPagination} from 'types/ui';
-import AddModal from 'components/Common/AddModal/AddModal';
+import AddModal from 'components/Common/BuyingModal/BuyingModal';
 import {calcTableValue} from 'utils/table';
 import Button, {BtnModes} from 'components/UI/Button/Button';
 import {BsPlusSquareFill} from 'react-icons/bs';
-import CurrencyTitle, {TdNameModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
+import CurrencyTitle, {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
+import {useGetAssetsQuery} from 'api/endPoints';
+import {useTypedSelector} from 'hooks/useTypedSelector';
+import {useActions} from 'hooks/useActions';
 
 const Main: FC = () => {
+  const {data: assets, isLoading: isLoadingAssets} = useGetAssetsQuery();
+  const currentPage = useTypedSelector(store => store.common.mainPagItem);
+
+  const {setIsActiveBuyingModal} = useActions();
+
   const [currency, setCurrency] = useState<IMainTableItem[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isActiveModal, setIsActiveModal] = useState<boolean>(false);
   const [currencyPerPage] = useState<number>(10);
   const [currentCurrency, setCurrentCurrency] = useState<IAsset | null>(null);
 
-  // const isLoading: boolean = !currency.length || !currentCurrency;
-  const isLoading: boolean = !currency.length;
+  const isLoading: boolean = isLoadingAssets || !currency.length;
 
-  useEffect(() => {    
-    fetchCryptoInfo();
-  }, []);
-
-  async function fetchCryptoInfo(): Promise<void> {
-    const cryptoInfo: IAsset[] = await fetch('https://api.coincap.io/v2/assets')
-      .then(res => res.json())
-      .then(result => result.data);
-    const cryptoInfoDataTable = getDataForCryptoTable(cryptoInfo);
-    setCurrency(cryptoInfoDataTable);
-  }
+  useEffect(() => {   
+    if(assets) {
+      const cryptoInfoDataTable = getDataForCryptoTable(assets);
+      setCurrency(cryptoInfoDataTable)
+    } 
+  }, [assets]);
 
   function getDataForCryptoTable(cryptoInfo: IAsset[]): IMainTableItem[] {
     const cryptoInfoDataTable = cryptoInfo.map(cryptoInfo => ({
@@ -46,39 +46,31 @@ const Main: FC = () => {
         priceUsd: calcTableValue(cryptoInfo.priceUsd, '$'),
         marketCapUsd: calcTableValue(cryptoInfo.marketCapUsd, '$'),
         vwap24Hr: calcTableValue(cryptoInfo.vwap24Hr, '$'),
-        supply:  calcTableValue(cryptoInfo.supply),
+        supply: calcTableValue(cryptoInfo.supply),
         volumeUsd24Hr: calcTableValue(cryptoInfo.volumeUsd24Hr, '$'),
-        changePercent24Hr: calcTableValue(cryptoInfo.changePercent24Hr, '%', false)
+        changePercent24Hr: calcTableValue(cryptoInfo.changePercent24Hr, '%', false, true)
       }
     }));
   
     return cryptoInfoDataTable;
   }
 
-  function goToPage(pageNumber: number): void {
-    setCurrentPage(pageNumber);
-  }
-
-  function changeCurrentPage(pageNumber: number): void {
-    setCurrentPage(pageNumber);
-  }
-
-  function handlerModalAdd(): void {
-    setIsActiveModal(!isActiveModal);
-  }
-
   function handlerAddBtn(e: Event, currency: IAsset): void {
     e.stopPropagation();
     setCurrentCurrency(currency);
-    handlerModalAdd();
+    setIsActiveBuyingModal();
   }
 
   function getCurrencyName(currency: IAsset): ReactNode {
-    return <CurrencyTitle mode={TdNameModes.TABLE} currency={currency}/>
+    return <CurrencyTitle 
+      mode={CurrencyTitleModes.TABLE} 
+      name={currency.name}
+      symbol={currency.symbol}
+    />
   }
 
   const tHeaders: string[] = [
-    'Add', 'Rank', 'Name', 'Prise', 'Market Cap',
+    'Add', 'Rank', 'Name', 'price', 'Market Cap',
     'VWAP(24Hr)', 'Supply', 'Volume(24Hr)',
     'Change(24Hr)'
   ];
@@ -86,9 +78,6 @@ const Main: FC = () => {
   const pag: IPagination = {
     currencyPerPage,
     totalCurrency: currency.length,
-    goToPage,
-    currentPage,
-    changeCurrentPage
   };
 
   const lastCurrencyPerPage: number = currentPage * currencyPerPage;
@@ -101,8 +90,6 @@ const Main: FC = () => {
     <main>
       {currentCurrency &&
         <AddModal
-          isActive={isActiveModal}
-          handler={handlerModalAdd}
           currency={currentCurrency}
         />
       }

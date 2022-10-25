@@ -1,27 +1,27 @@
 import {FC} from 'react';
 import {Container} from 'components/Common/CurrencyTitle/CurrencyTitle.styled';
-import {IAsset} from 'types/api';
 
-export enum TdNameModes {
+export enum CurrencyTitleModes {
   TABLE = 'table',
   MODAL = 'modal'
 }
 
-interface ITdName {
-  currency: IAsset;
-  mode: TdNameModes;
+interface ICurrencyTitle {
+  name: string;
+  symbol: string;
+  mode: CurrencyTitleModes;
 } 
 
-const CurrencyTitle: FC<ITdName> = (props) => {
-  const {currency, mode} = props;
-  const firstChar: string = currency.name[0]; 
+const CurrencyTitle: FC<ICurrencyTitle> = (props) => {
+  const {name, symbol, mode} = props;
+  const firstChar: string = name[0]; 
   return (
     <Container mode={mode}>
       <div>{firstChar}</div>
       <div>
-        <span>{currency.name}</span>
-        {mode !== TdNameModes.MODAL && 
-          <span>{currency.symbol}</span>
+        <span>{name}</span>
+        {mode !== CurrencyTitleModes.MODAL && 
+          <span>{symbol}</span>
         }
       </div>
     </Container>

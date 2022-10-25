@@ -1,51 +1,24 @@
 import {ReactNode} from 'react';
 import {Colors} from 'styles/vars';
+import {getStrSignNumber, roundNumber, setColorText} from 'utils/common';
 
-export function setColorTd(columns: number[], y: number, dataCell: string | ReactNode): Colors {
-  if(!columns || !columns.includes(y) || typeof(dataCell) !== 'string') return Colors.DARK_BLUE;
-
-  const matcher: RegExp = /[-+]?[0-9]*[.,]?[0-9]+(?:[eE][-+]?[0-9]+)?/;
-  const number: number = Number(dataCell.match(matcher)!);
-  
-  switch(Math.sign(number)) {
-    case (-1):
-      return Colors.RED;
-    case (1):
-      return Colors.GREEN;
-    default:
-      return Colors.DARK_BLUE;
+export function setColorTd(columns: number[], y: number, title: string | ReactNode): Colors {
+  if(!columns || !columns.includes(y) || typeof(title) !== 'string') {
+    return Colors.DARK_BLUE;
+  } else {
+    return setColorText(title);
   }
 }
 
-export function calcTableValue(num: string, symbol: string = '', isStart: boolean = true): string {
+export function calcTableValue(num: string, symbol: string = '', isStart: boolean = true, isSign: boolean = false): string {
   let number: number = Number(num);
-  let tableValue: string = num;
+  if(!number) return num;
 
-  const trillion: number = Math.pow(10, 12);
-  const billion: number = Math.pow(10, 9);
-  const million: number = Math.pow(10, 6);
-  const thousand: number = Math.pow(10, 3);
+  let tableValue: string = addNumberIndex(number);
 
-  switch(true) {
-    case (number >= trillion):
-      tableValue = roundNumber(number / trillion) + 't';
-      break;
-    case (number >= billion):
-      tableValue = roundNumber(number / billion) + 'b';
-      break;
-    case (number >= million):
-      tableValue = roundNumber(number / million) + 'm';
-      break;
-    case (number >= thousand):
-      tableValue = roundNumber(number / thousand) + 'k';
-      break;
-    case (Math.abs(number) < 0.1 && Math.abs(number) !== 0):
-      const power: number = watchNumber(Math.abs(number));
-      tableValue = roundNumber(number, power).toString();
-      break;
-    default:
-      tableValue = roundNumber(number).toString(); 
-      break;
+  if(isSign) {
+    const sign: string = getStrSignNumber(Number(tableValue));
+    tableValue = `${sign}${Math.abs(Number(tableValue))}`;
   }
 
   switch(true) {
@@ -62,9 +35,27 @@ export function calcTableValue(num: string, symbol: string = '', isStart: boolea
   return tableValue;
 }
 
-export function roundNumber(number: number, power: number = 2): number {
-  const rate: number = Math.pow(10, power); 
-  return Math.floor(number * rate) / rate;
+export function addNumberIndex(number: number) {
+  const trillion: number = Math.pow(10, 12);
+  const billion: number = Math.pow(10, 9);
+  const million: number = Math.pow(10, 6);
+  const thousand: number = Math.pow(10, 3);
+
+  switch(true) {
+    case (number >= trillion):
+      return roundNumber(number / trillion) + 't';
+    case (number >= billion):
+      return roundNumber(number / billion) + 'b';
+    case (number >= million):
+      return roundNumber(number / million) + 'm';
+    case (number >= thousand):
+      return roundNumber(number / thousand) + 'k';
+    case (Math.abs(number) < 0.1 && Math.abs(number) !== 0):
+      const power: number = watchNumber(Math.abs(number));
+      return roundNumber(number, power).toString();
+    default:
+      return roundNumber(number).toString(); 
+  }
 }
  
 function watchNumber(number: number): number {

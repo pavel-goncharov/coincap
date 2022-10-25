@@ -12,10 +12,11 @@ interface IModal {
 
 export const Modal: FC<IModal> = (props) => {
   const {isActive, handler, children, title} = props;
+
   return (
     <Container
       onClick={handler}
-      isActive={isActive} 
+      isActive={isActive}
     >
       <div onClick={e => e.stopPropagation()}>
         <div>

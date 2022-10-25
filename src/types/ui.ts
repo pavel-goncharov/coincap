@@ -19,9 +19,6 @@ export interface IMainTableItem {
 export interface IPagination {
   currencyPerPage: number;
   totalCurrency: number;
-  goToPage: (pageNumber: number) => void;
-  currentPage: number;
-  changeCurrentPage: (newPage: number) => void; 
 }
 
 export interface IListItem {
@@ -32,10 +29,11 @@ export interface IListItem {
 }
 
 export interface ITopCurrency {
-  name: string;
-  usd: string;
-  usdDiff: string;
-  percentDiff: string;
+  id: string;
+  symbol: string;
+  usd: number;
+  usdDiff: number;
+  percentDiff: number;
 }
 
 export interface IFont {
@@ -44,3 +42,8 @@ export interface IFont {
 }
 
 export type line = 'line';
+
+export interface IDiffs {
+  usdDiff: number;
+  percentDiff: number;
+}

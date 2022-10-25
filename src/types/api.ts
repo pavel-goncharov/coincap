@@ -12,9 +12,15 @@ export interface IAsset {
   vwap24Hr: string;
 }
 
-export interface IHistoryItem {
+export interface IHistory {
   priceUsd: string;
   time: number;
   circulatingSupply: string;
   data: string;
+}
+
+export interface IArgsHistory {
+  id: string;
+  interval: string;
+  fromEnd: number;
 }

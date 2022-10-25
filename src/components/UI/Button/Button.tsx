@@ -1,6 +1,11 @@
 import {FC, ReactNode} from 'react';
 import {Container} from 'components/UI/Button/Button.styled';
 
+export enum BtnTypes {
+  button = 'button',
+  submit = 'submit'
+}
+
 export enum BtnModes {
   ICON = 'icon',
   TITLE = 'title',
@@ -9,6 +14,7 @@ export enum BtnModes {
 }
 
 interface IButton {
+  type?: BtnTypes;
   mode: BtnModes;
   title?: string;
   icon?: ReactNode;
@@ -17,9 +23,10 @@ interface IButton {
 }
 
 const Button: FC<IButton> = (props) => {
-  const {mode, title, icon, handler, disabled} = props;
+  const {type, mode, title, icon, handler, disabled} = props;
   return (
     <Container
+      type={type || BtnTypes.button}
       mode={mode}
       onClick={handler}
       disabled={disabled}

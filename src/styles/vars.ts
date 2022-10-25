@@ -7,12 +7,10 @@ export const enum Colors {
   YELLOW = '#F5CC3B',
   RED = '#FF1414',
   GREEN = '#009D00',
-  BLUE = '#3B3BFF',
   PURPLE_ALPHA = '#8955F680',
   BLACK_ALPHA = '#00000066',
   GRAY = '#C5C5C5', 
   GRAY_LIGHT = '#FCFCFC',
-  GRAY_LIGHT_TWO = '#EEEEEEE'
 }
 
 export const enum Fonts {

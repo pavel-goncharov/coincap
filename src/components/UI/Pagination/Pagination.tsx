@@ -1,11 +1,27 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import {Container, Content, PagButton} from 'components/UI/Pagination/Pagination.styled';
 import {IPagination} from 'types/ui';
 import Button, {BtnModes} from 'components/UI/Button/Button';
 import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs';
+import {useTypedSelector} from 'hooks/useTypedSelector';
+import {useActions} from 'hooks/useActions';
+import {getItem, setItem} from 'utils/localStorage';
+import {LocalStorageKeys} from 'constants/localStorage';
 
 const Pagination: FC<IPagination> = (props) => {
-  const {currencyPerPage, totalCurrency, goToPage, currentPage, changeCurrentPage} = props;
+  const {currencyPerPage, totalCurrency} = props;
+
+  const currentPage = useTypedSelector(store => store.common.mainPagItem);
+  const {setMainPagItem: setCurrentMain} = useActions();
+
+  useEffect(() => {
+    const mainPagItem: number = getItem(LocalStorageKeys.MAIN_PAG_ITEM); 
+    if(mainPagItem) {
+      setCurrentMain(mainPagItem);
+    } else {
+      setItem(LocalStorageKeys.MAIN_PAG_ITEM, 1);
+    }
+  }, []);
 
   function getPageNumbers(): number[] {
     const pageNumbers = [];
@@ -18,11 +34,11 @@ const Pagination: FC<IPagination> = (props) => {
   }
   
   function goToPrevPage(): void {
-    changeCurrentPage(currentPage - 1);
+    setCurrentMain(currentPage - 1);
   }
 
   function goToNextPage(): void {
-    changeCurrentPage(currentPage + 1);
+    setCurrentMain(currentPage + 1);
   }
 
   const isFirstPage: boolean = currentPage === 1;
@@ -42,7 +58,7 @@ const Pagination: FC<IPagination> = (props) => {
           {getPageNumbers().map(page =>
             <li key={page}>
               <PagButton
-                onClick={() => goToPage(page)}
+                onClick={() => setCurrentMain(page)}
                 isActive={isActivePage(page)}
               >
                 {page}

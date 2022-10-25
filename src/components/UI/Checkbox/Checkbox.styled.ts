@@ -33,7 +33,7 @@ export const Container = styled.label`
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: ${Colors.GRAY_LIGHT_TWO};
+    background-color: ${Colors.WHITE};
   }
 
   &:hover input ~ span {
@@ -41,6 +41,6 @@ export const Container = styled.label`
   }
 
   > input:checked ~ span {
-    background-color: ${Colors.BLUE};
+    background-color: ${Colors.GREEN};
   }
 `;

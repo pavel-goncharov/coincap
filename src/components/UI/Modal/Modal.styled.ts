@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 import {Aligns, Directions, Displays, flex, Justifys} from 'styles/mixins/flex';
 import {Colors, Fonts} from 'styles/vars';
 
@@ -13,16 +13,16 @@ export const Container = styled.div<IContainerModal>`
   width: 100vw;
   height: 100vh;
   background-color: ${Colors.BLACK_ALPHA};
-  transition: 0.5s;
+  transition: .5s;
   z-index: 1;
   ${flex({jc: Justifys.CENTER, ai: Aligns.CENTER})}
-
+ 
   > div {
     max-height: 80vh;
     padding: 20px;
     border-radius: 5px;
     background-color: ${Colors.WHITE};
-    transition: 0.4s all;
+    transition: .5s;
     position: relative;
     overflow-y: auto;
     ${flex({d: Displays.INLINE, fd: Directions.COLUMN, g: '10px'})}
