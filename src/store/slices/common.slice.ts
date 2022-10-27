@@ -1,16 +1,19 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {LocalStorageKeys} from 'constants/localStorage';
 import {SliceNames} from 'constants/slices';
+import {IAsset} from 'types/api';
 import {setItem} from 'utils/localStorage';
 
 interface ICommonState {
   mainPagItem: number;
   isActiveBuyingModal: boolean;
+  assets: IAsset[];
 } 
 
 const initialState: ICommonState = {
   mainPagItem: 1,
-  isActiveBuyingModal: false
+  isActiveBuyingModal: false,
+  assets: []
 };
 
 const commonSlice = createSlice({
@@ -23,6 +26,9 @@ const commonSlice = createSlice({
     },
     setIsActiveBuyingModal(state) {
       state.isActiveBuyingModal = !state.isActiveBuyingModal;
+    },
+    setAssets(state, action: PayloadAction<IAsset[]>) {
+      state.assets = action.payload;
     }
   }
 });

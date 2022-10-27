@@ -7,12 +7,11 @@ import {calcTableValue} from 'utils/table';
 import Button, {BtnModes} from 'components/UI/Button/Button';
 import {BsPlusSquareFill} from 'react-icons/bs';
 import CurrencyTitle, {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
-import {useGetAssetsQuery} from 'api/endPoints';
 import {useTypedSelector} from 'hooks/useTypedSelector';
 import {useActions} from 'hooks/useActions';
 
 const Main: FC = () => {
-  const {data: assets, isLoading: isLoadingAssets} = useGetAssetsQuery();
+  const assets = useTypedSelector(store => store.common.assets);
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
 
   const {setIsActiveBuyingModal} = useActions();
@@ -20,8 +19,6 @@ const Main: FC = () => {
   const [currency, setCurrency] = useState<IMainTableItem[]>([]);
   const [currencyPerPage] = useState<number>(10);
   const [currentCurrency, setCurrentCurrency] = useState<IAsset | null>(null);
-
-  const isLoading: boolean = isLoadingAssets || !currency.length;
 
   useEffect(() => {   
     if(assets) {
@@ -96,7 +93,6 @@ const Main: FC = () => {
       <Table
         tHeaders={tHeaders}
         tData={currentCurrencyPerPage}
-        isLoading={isLoading}
         columnsColor={columnsColor}
         isMoveToPageRow={isMoveToPageRow}
         pag={pag}

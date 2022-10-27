@@ -1,13 +1,22 @@
 import {IBagState} from 'store/slices/bag.slice';
+import {IAsset} from 'types/api';
+import {ICurrency, IHistory} from 'types/bag';
 
-export const mockInitBagState: IBagState = {
+interface IPartInitBag {
+  usd: number;
+  currency: ICurrencyPartInitBag[];
+}
+
+interface ICurrencyPartInitBag {
+  id: string;
+  history: IHistory[];
+}
+
+export const partInitBag: IPartInitBag = {
   usd: 10000,
   currency: [
     {
-      id: 'bitcoin',
-      name: 'Bitcoin', 
-      symbol: 'BTC',
-      priceUsd: 19160.9323781431503923, 
+      id: 'bitcoin', 
       history: [
         {
           date: 1666523695089,
@@ -18,9 +27,6 @@ export const mockInitBagState: IBagState = {
     },
     {
       id: 'ethereum',
-      name: 'Ethereum', 
-      symbol: 'ETH',
-      priceUsd: 1305.0594697391787766,
       history: [
         {
           date: 1666523772809,
@@ -36,9 +42,6 @@ export const mockInitBagState: IBagState = {
     },
     {
       id: 'tether',
-      name: 'Tether', 
-      symbol: 'USDT',
-      priceUsd: 1.0004538407578747,
       history: [
         {
           date: 1666523858451,
@@ -58,4 +61,34 @@ export const mockInitBagState: IBagState = {
       ]
     }
   ]
+}
+
+function getHistoryById(currency: ICurrencyPartInitBag[] | ICurrency[], id: string): IHistory[] {
+  return currency.find(currencyOne => currencyOne.id === id)?.history || [];
+}
+
+export function getDataBag(lastBag: IPartInitBag | IBagState, assets: IAsset[]): IBagState {
+  const idInitCurrency: string[] = lastBag.currency.map(currencyOne => currencyOne.id);
+  
+  const assetsInitCurrency: IAsset[] = [];
+  assets.forEach(asset => {
+    if(idInitCurrency.includes(asset.id)) {
+      assetsInitCurrency.push(asset);
+    }
+  });
+
+  const currency: ICurrency[] = assetsInitCurrency.map(asset => ({
+    id: asset.id,
+    name: asset.name,
+    symbol: asset.symbol,
+    priceUsd: Number(asset.priceUsd),
+    history: getHistoryById(lastBag.currency, asset.id)
+  }));
+
+  const initBag: IBagState = {
+    usd: lastBag.usd,
+    currency
+  }
+
+  return initBag;
 }

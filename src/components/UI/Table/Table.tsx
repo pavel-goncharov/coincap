@@ -4,20 +4,18 @@ import {RoutePaths} from 'router/router';
 import {generatePath, useNavigate} from 'react-router-dom';
 import {IMainTableItem, IPagination} from 'types/ui';
 import Pagination from 'components/UI/Pagination/Pagination';
-import {Loader} from 'components/UI/Loader/Loader.styled';
 import {setColorTd} from 'utils/table';
 
 interface ITable {
   tHeaders: string[];
   tData: IMainTableItem[];
-  isLoading: boolean;
   columnsColor?: number[];
   isMoveToPageRow: boolean;
   pag: IPagination;
 }
 
 const Table: FC<ITable> = (props) => {
-  const {tHeaders, tData, isLoading, columnsColor, isMoveToPageRow, pag} = props;
+  const {tHeaders, tData, columnsColor, isMoveToPageRow, pag} = props;
   const {currencyPerPage, totalCurrency} = pag;
 
   const navigate = useNavigate();
@@ -26,10 +24,6 @@ const Table: FC<ITable> = (props) => {
     if(!isMoveToPageRow) return; 
     const pagePath = generatePath(RoutePaths.CURRENCY, {id});
     navigate(pagePath);
-  }
-
-  if(isLoading) {
-    return <Loader/>
   }
 
   return (
