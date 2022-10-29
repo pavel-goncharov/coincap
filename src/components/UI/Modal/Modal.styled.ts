@@ -23,7 +23,6 @@ export const Container = styled.div<IContainerModal>`
     border-radius: 5px;
     background-color: ${Colors.WHITE};
     transition: .5s;
-    position: relative;
     overflow-y: auto;
     ${flex({d: Displays.INLINE, fd: Directions.COLUMN, g: '10px'})}
 

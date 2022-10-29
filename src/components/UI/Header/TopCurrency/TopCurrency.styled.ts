@@ -21,6 +21,7 @@ export const Container = styled.ul`
     ${flex({g: '5px'})}
 
     > span {
+      white-space: nowrap;
       &:first-child {
       font-family: ${Fonts.INTER_SEMIBOLD};
         color: ${Colors.PURPLE};
