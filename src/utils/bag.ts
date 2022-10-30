@@ -3,10 +3,10 @@ import {IListItem} from 'types/ui';
 import {roundNumber} from 'utils/common';
 
 export function getTotalCostBag(usd: number, currency: ICurrency[]): number {
-  return currency.reduce(
+  return roundNumber(currency.reduce(
     (prev, current) => prev + getTotalNumber(current.history, current.priceUsd),
     usd
-  );
+  ));
 }
 
 export function getCurrencyInfo(currency: ICurrency): IListItem[] {

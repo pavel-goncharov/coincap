@@ -1,3 +1,5 @@
+import {IAsset} from 'types/api';
+
 export interface ICurrency {
   id: string;
   name: string;
@@ -13,7 +15,6 @@ export interface IHistory {
 }
 
 export interface IPayloadSetNumber {
-  id: string;
-  priceUsd: number;
+  asset: IAsset;
   number: number;
 }

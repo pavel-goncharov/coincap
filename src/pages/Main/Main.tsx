@@ -85,11 +85,9 @@ const Main: FC = () => {
 
   return (
     <main>
-      {currentCurrency &&
-        <AddModal
-          currency={currentCurrency}
-        />
-      }
+      <AddModal
+        currency={currentCurrency}
+      />
       <Table
         tHeaders={tHeaders}
         tData={currentCurrencyPerPage}

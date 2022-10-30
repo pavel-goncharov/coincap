@@ -10,7 +10,7 @@ import {IPayloadSetNumber} from 'types/bag';
 import {useTypedSelector} from 'hooks/useTypedSelector';
 
 interface IAddModal {
-  currency: IAsset;
+  currency: IAsset | null;
 }
 
 const AddModal: FC<IAddModal> = (props) => {
@@ -22,25 +22,27 @@ const AddModal: FC<IAddModal> = (props) => {
 
   const [value, setValue] = useState<number>(1);
 
-  function getConverterStr(value: number, currency: IAsset): string {
-    const totalUSD: number = roundNumber(value * Number(currency.priceUsd)); 
-    return `${value} ${currency.symbol} = $${totalUSD}`;
+  function getConverterStr(value: number, currency: IAsset | null): string {
+    const totalUSD: number = roundNumber(value * Number(currency?.priceUsd)); 
+    return `${value} ${currency?.symbol} = $${totalUSD}`;
   }
 
   function handlerOnSubmit(e: FormEvent<HTMLInputElement>) {
     e.preventDefault();
-    const args: IPayloadSetNumber = {
-      id: currency.id,
-      priceUsd: Number(currency.priceUsd),
-      number: value
-    };
-    setNumberCurrency(args);
-    setIsActiveBuyingModal();
+    if(currency) {
+      const args: IPayloadSetNumber = {
+        asset: currency,
+        number: value
+      };
+      setNumberCurrency(args);
+      setIsActiveBuyingModal();
+    }
   }
 
-  const addModalTitle: string = `Buying ${currency.symbol}`
+  const addModalTitle: string = `Buying ${currency?.symbol}`
   const btnTitle: string = 'Confirm';
   const converter: string = getConverterStr(value, currency);
+
   return (
     <Modal 
       isActive={isActiveBuyingModal} 
