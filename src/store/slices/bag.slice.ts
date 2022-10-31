@@ -4,6 +4,7 @@ import {ICurrency, IHistory, IPayloadSetNumber} from 'types/bag';
 import {getTotalNumber} from 'utils/bag';
 import {setItem} from 'utils/localStorage';
 import {LocalStorageKeys} from 'constants/localStorage';
+import {roundNumber} from 'utils/common';
 
 export interface IBagState {
   usd: number;
@@ -33,6 +34,7 @@ const bagSlice = createSlice({
         number,
         priceUsd: Number(asset.priceUsd)
       };
+      const cost: number = roundNumber(number * Number(asset.priceUsd));
       if(currencyOne) {      
         currencyOne.history.push(historyItem);
       } else {
@@ -46,6 +48,7 @@ const bagSlice = createSlice({
         currentCurrency.push(newBagCurrency);
         state.currency = currentCurrency;
       }
+      state.usd -= cost;
       setItem(LocalStorageKeys.BAG, state);
     },
     sellCurrencyOne(state, action: PayloadAction<string>) {
