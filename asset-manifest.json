@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/coincap/static/js/main.dd9a74fc.js",
+    "static/media/Inter-ExtraBold.ttf": "/coincap/static/media/Inter-ExtraBold.e4a4cb7133001f282a15.ttf",
+    "static/media/Inter-Bold.ttf": "/coincap/static/media/Inter-Bold.88fa7ae373b07b41ecce.ttf",
+    "static/media/Inter-SemiBold.ttf": "/coincap/static/media/Inter-SemiBold.4d56bb21f2399db8ad48.ttf",
+    "static/media/Inter-Medium.ttf": "/coincap/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
+    "static/media/Inter-Regular.ttf": "/coincap/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
+    "static/media/OpenSans-Bold.ttf": "/coincap/static/media/OpenSans-Bold.fa428cdd2e334e2be904.ttf",
+    "index.html": "/coincap/index.html",
+    "main.dd9a74fc.js.map": "/coincap/static/js/main.dd9a74fc.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.dd9a74fc.js"
+  ]
+}
