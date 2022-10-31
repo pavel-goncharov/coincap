@@ -26,9 +26,6 @@ export const Container = styled.button<IButton>`
 
   &:disabled {
     cursor: not-allowed;
-    svg{
-      fill: ${Colors.GRAY};
-    }
   }
 
   > span {
@@ -44,7 +41,13 @@ export const Container = styled.button<IButton>`
   ${(props) => {
     switch (props.mode) {
       case BtnModes.ICON:
-        return css``;
+        return css`
+          &:disabled {
+            svg{
+              fill: ${Colors.GRAY};
+            }
+          }
+        `;
       case BtnModes.TITLE:
         return css`
           padding: 5px 20px;
@@ -54,6 +57,10 @@ export const Container = styled.button<IButton>`
 
           &:hover {
             background-color: ${Colors.PURPLE};
+          }
+
+          &:disabled {
+            background-color: ${Colors.GRAY};
           }
         `;
       case BtnModes.DOUBLE:

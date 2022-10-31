@@ -1,6 +1,6 @@
 import {FC, FormEvent, useState} from 'react';
 import {Modal} from 'components/UI/Modal/Modal';
-import {Container} from 'components/Common/BuyingModal/BuyingModal.styled';
+import {Container, Hint} from 'components/Common/BuyingModal/BuyingModal.styled';
 import Input from 'components/UI/Input/Input';
 import Button, {BtnTypes, BtnModes} from 'components/UI/Button/Button';
 import {IAsset} from 'types/api';
@@ -17,19 +17,25 @@ const AddModal: FC<IAddModal> = (props) => {
   const {currency} = props;
 
   const isActiveBuyingModal: boolean = useTypedSelector(state => state.common.isActiveBuyingModal);
+  const usdBag: number = useTypedSelector(state => state.bag.usd);
 
   const {setNumberCurrency, setIsActiveBuyingModal} = useActions();
 
   const [value, setValue] = useState<number>(1);
 
-  function getConverterStr(value: number, currency: IAsset | null): string {
-    const totalUSD: number = roundNumber(value * Number(currency?.priceUsd)); 
-    return `${value} ${currency?.symbol} = $${totalUSD}`;
+  function getTotalUsd(value: number, currency: IAsset | null): number {
+    return roundNumber(value * Number(currency?.priceUsd)); 
   }
 
-  function handlerOnSubmit(e: FormEvent<HTMLInputElement>) {
+  function getHintStr(isEnough: boolean, currency: IAsset | null, totalUsd: number): string {
+    return isEnough ?
+      `${value} ${currency?.symbol} = $${totalUsd}` : 
+      'Not enough funds';
+  }
+
+  function handlerOnSubmit(e: FormEvent<HTMLInputElement>, isEnough: boolean) {
     e.preventDefault();
-    if(currency) {
+    if(currency && isEnough) {
       const args: IPayloadSetNumber = {
         asset: currency,
         number: value
@@ -41,7 +47,9 @@ const AddModal: FC<IAddModal> = (props) => {
 
   const addModalTitle: string = `Buying ${currency?.symbol}`
   const btnTitle: string = 'Confirm';
-  const converter: string = getConverterStr(value, currency);
+  const AddedCurrencyUsd: number = getTotalUsd(value, currency);
+  const isEnough: boolean = usdBag >= AddedCurrencyUsd;
+  const hintStr: string = getHintStr(isEnough, currency, AddedCurrencyUsd);
 
   return (
     <Modal 
@@ -54,12 +62,17 @@ const AddModal: FC<IAddModal> = (props) => {
           value={value}
           setValue={setValue}
         />
-        <p>{converter}</p>
+        <Hint
+          isEnough={isEnough} 
+        >
+          {hintStr}
+        </Hint>
         <Button
           type={BtnTypes.submit}
           mode={BtnModes.TITLE}
           title={btnTitle}
-          handler={handlerOnSubmit}
+          handler={e => handlerOnSubmit(e, isEnough)}
+          disabled={!isEnough}
         />          
       </Container>
     </Modal>

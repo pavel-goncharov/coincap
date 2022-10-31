@@ -42,7 +42,7 @@ const Main: FC = () => {
         name: getCurrencyName(cryptoInfo),
         priceUsd: calcTableValue(cryptoInfo.priceUsd, '$'),
         marketCapUsd: calcTableValue(cryptoInfo.marketCapUsd, '$'),
-        vwap24Hr: calcTableValue(cryptoInfo.vwap24Hr, '$'),
+        vwap24Hr: calcTableValue(cryptoInfo.vwap24Hr, '$') || 'no data',
         supply: calcTableValue(cryptoInfo.supply),
         volumeUsd24Hr: calcTableValue(cryptoInfo.volumeUsd24Hr, '$'),
         changePercent24Hr: calcTableValue(cryptoInfo.changePercent24Hr, '%', false, true)

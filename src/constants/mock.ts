@@ -13,7 +13,7 @@ interface ICurrencyPartInitBag {
 }
 
 export const partInitBag: IPartInitBag = {
-  usd: 10000,
+  usd: 100000,
   currency: [
     {
       id: 'bitcoin', 
