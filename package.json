@@ -2,6 +2,7 @@
   "name": "coincap",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pavel-goncharov.github.io/coincap/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
     "@types/node": "^16.11.62",
@@ -11,6 +12,7 @@
     "@types/styled-components": "^5.1.26",
     "chart.js": "^3.9.1",
     "craco": "^0.0.3",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
@@ -26,7 +28,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
