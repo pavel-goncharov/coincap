@@ -48,7 +48,7 @@ const bagSlice = createSlice({
         currentCurrency.push(newBagCurrency);
         state.currency = currentCurrency;
       }
-      state.usd -= cost;
+      state.usd = roundNumber(state.usd - cost);
       setItem(LocalStorageKeys.BAG, state);
     },
     sellCurrencyOne(state, action: PayloadAction<string>) {
