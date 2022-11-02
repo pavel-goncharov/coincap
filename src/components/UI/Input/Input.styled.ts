@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import {Colors, Fonts} from 'styles/vars';
+import {maxNumber} from 'constants/ui';
 
 export const Container = styled.input.attrs({
   type: 'number', 
   step: 0.01,
   min: 0.01,
-  max: 9999999999999998, 
+  max: maxNumber, 
   placeholder: 'input number'
 })`
   width: 100%;

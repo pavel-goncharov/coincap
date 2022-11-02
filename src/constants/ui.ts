@@ -1,0 +1,1 @@
+export const maxNumber: number = 1000000000;

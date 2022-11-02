@@ -3,7 +3,6 @@ import {IAsset} from 'types/api';
 import {ICurrency, IHistory} from 'types/bag';
 
 export interface IPartInitBag {
-  usd: number;
   currency: ICurrencyPartInitBag[];
   ids: string[];
 }
@@ -16,7 +15,6 @@ interface ICurrencyPartInitBag {
 export const mockIds: string[] = ['bitcoin', 'ethereum', 'tether'];
 
 export const partInitBag: IPartInitBag = {
-  usd: 100000,
   currency: [
     {
       id: mockIds[0], 
@@ -90,7 +88,6 @@ export function getDataBag(lastBag: IPartInitBag | IBagState, assets: IAsset[]):
   }));
 
   const initBag: IBagState = {
-    usd: lastBag.usd,
     currency,
     ids: idInitCurrency
   }

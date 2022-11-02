@@ -83,16 +83,10 @@ export const Container = styled.button<IButton>`
         `;
       case BtnModes.REMOVE:
         return css`
-          padding: 5px;
-          border: 2px solid ${Colors.DARK_BLUE};
-          border-radius: 5px;
-          font-size: 1rem;
-          line-height: 1rem;
-    
           &:hover {
-            background-color: ${Colors.RED};
-            border-color: ${Colors.RED};
-            color: ${Colors.WHITE};
+            svg {
+              fill: ${Colors.RED};
+            }
           }
         `;
       }

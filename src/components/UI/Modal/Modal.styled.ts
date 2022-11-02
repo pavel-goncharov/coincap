@@ -27,12 +27,17 @@ export const Container = styled.div<IContainerModal>`
     ${flex({d: Displays.INLINE, fd: Directions.COLUMN, g: '10px'})}
 
     > div {
-     ${flex({jc: Justifys.BETWEEN})}
+     ${flex({jc: Justifys.BETWEEN, g: '40px'})}
      
       > span {
         font-size: 1.5rem;
         line-height: 1.5rem;
         font-family: ${Fonts.INTER_SEMIBOLD};
+      }
+
+      svg {
+        position: relative;
+        top: 1px;
       }
     };
   }
