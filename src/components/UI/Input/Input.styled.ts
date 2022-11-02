@@ -11,11 +11,11 @@ export const Container = styled.input.attrs({
   width: 100%;
   padding: 10px 20px;
   border: 3px solid ${Colors.DARK_BLUE};
-  outline: none;
+  outline-offset: -3px;
   border-radius: 5px;
   font-family: ${Fonts.INTER_SEMIBOLD};
 
   &:focus {
-    border-color: ${Colors.PURPLE};
+    outline: 3px solid ${Colors.PURPLE};
   }
 `;
