@@ -26,9 +26,6 @@ const commonSlice = createSlice({
     },
     setIsActiveBuyingModal(state) {
       state.isActiveBuyingModal = !state.isActiveBuyingModal;
-    },
-    setAssets(state, action: PayloadAction<IAsset[]>) {
-      state.assets = action.payload;
     }
   }
 });

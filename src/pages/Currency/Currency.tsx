@@ -75,11 +75,9 @@ const Currency: FC = () => {
         options={chartOptions}
         data={chartData}
       />
-      {currency &&
-        <AddModal
-          currency={currency}
-        />
-      }
+      <AddModal
+        currency={currency}
+      />
     </Main>
   );
 }

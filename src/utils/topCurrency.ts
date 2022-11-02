@@ -41,4 +41,8 @@ function getDiffs(currentUsd: number, history: IHistory[]): IDiffs {
 
 function sortCurrency(currency: ITopCurrency[]): ITopCurrency[] {
   return currency.sort((a, b) => b.usd - a.usd).slice(0, 3);
-} 
+}
+
+export function hasBagCurrency(currency: ITopCurrency[]): boolean {
+  return currency.some(currencyOne => currencyOne.usd > 0);
+}

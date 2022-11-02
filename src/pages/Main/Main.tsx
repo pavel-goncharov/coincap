@@ -1,7 +1,7 @@
 import {FC, ReactNode, useEffect, useState} from 'react';
 import Table from 'components/UI/Table/Table';
 import {IAsset} from 'types/api';
-import {IMainTableItem, IPagination} from 'types/ui';
+import {IMainTableItem} from 'types/ui';
 import AddModal from 'components/Common/BuyingModal/BuyingModal';
 import {calcTableValue} from 'utils/table';
 import Button, {BtnModes} from 'components/UI/Button/Button';
@@ -9,22 +9,25 @@ import {BsPlusSquareFill} from 'react-icons/bs';
 import CurrencyTitle, {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
 import {useTypedSelector} from 'hooks/useTypedSelector';
 import {useActions} from 'hooks/useActions';
+import {Loader} from 'components/UI/Loader/Loader.styled';
+import {useGetAssetsQuery} from 'api/endPoints';
+import {getFirstCurrency} from 'utils/currency';
+import {limit} from 'constants/api';
 
 const Main: FC = () => {
-  const assets = useTypedSelector(store => store.common.assets);
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
+  const {data: assets, isLoading} = useGetAssetsQuery({offset: getFirstCurrency(currentPage, limit), limit});
 
   const {setIsActiveBuyingModal} = useActions();
 
   const [currency, setCurrency] = useState<IMainTableItem[]>([]);
-  const [currencyPerPage] = useState<number>(10);
   const [currentCurrency, setCurrentCurrency] = useState<IAsset | null>(null);
 
   useEffect(() => {   
     if(assets) {
       const cryptoInfoDataTable = getDataForCryptoTable(assets);
-      setCurrency(cryptoInfoDataTable)
-    } 
+      setCurrency(cryptoInfoDataTable);
+    }
   }, [assets]);
 
   function getDataForCryptoTable(cryptoInfo: IAsset[]): IMainTableItem[] {
@@ -71,17 +74,11 @@ const Main: FC = () => {
     'VWAP(24Hr)', 'Supply', 'Volume(24Hr)',
     'Change(24Hr)'
   ];
-
-  const pag: IPagination = {
-    currencyPerPage,
-    totalCurrency: currency.length,
-  };
-
-  const lastCurrencyPerPage: number = currentPage * currencyPerPage;
-  const firstCurrencyPerPage: number = lastCurrencyPerPage - currencyPerPage;
-  const currentCurrencyPerPage: IMainTableItem[] = currency.slice(firstCurrencyPerPage, lastCurrencyPerPage); 
   const columnsColor: number[] = [0, 8];
-  const isMoveToPageRow: boolean = true; 
+  
+  if(isLoading) {
+    return <Loader/>
+  }
 
   return (
     <main>
@@ -90,10 +87,8 @@ const Main: FC = () => {
       />
       <Table
         tHeaders={tHeaders}
-        tData={currentCurrencyPerPage}
+        tData={currency}
         columnsColor={columnsColor}
-        isMoveToPageRow={isMoveToPageRow}
-        pag={pag}
       />
     </main>
   );

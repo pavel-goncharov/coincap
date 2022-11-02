@@ -10,6 +10,7 @@ import {useTypedSelector} from 'hooks/useTypedSelector';
 import {getCurrencyInfo, getTotalCostBag, isSpent} from 'utils/bag';
 import {ICurrency} from 'types/bag';
 import {useActions} from 'hooks/useActions';
+import {BsFillTrashFill} from 'react-icons/bs';
 
 interface IBagModal {
   isActive: boolean;
@@ -19,9 +20,8 @@ interface IBagModal {
 const BagModal: FC<IBagModal> = (props) => {
   const {isActive, handler} = props;
   
-  const usd: number = useTypedSelector(store => store.bag.usd);
   const currencyBag: ICurrency[] = useTypedSelector(store => store.bag.currency);
-  const totalCostBag: number = getTotalCostBag(usd, currencyBag);
+  const totalCostBag: number = getTotalCostBag(currencyBag);
   const {sellCurrencyOne} = useActions();
   
   function sellHandler(id: string) {
@@ -30,10 +30,8 @@ const BagModal: FC<IBagModal> = (props) => {
 
   const title: string = 'My bag';
   const headList: IListItem[] = [
-    {id: 0, title: 'USD', value: `$${usd}`},
-    {id: 1, title: 'Bag', value: `$${totalCostBag}`}
+    {id: 0, title: 'Bag', value: `$${totalCostBag}`}
   ];
-  const btnTitle: string = 'Sell';
 
   return (
     <Modal isActive={isActive} handler={handler} title={title}>
@@ -52,7 +50,7 @@ const BagModal: FC<IBagModal> = (props) => {
                   <Button
                     mode={BtnModes.REMOVE}
                     handler={() => sellHandler(cur.id)}
-                    title={btnTitle}
+                    icon={<BsFillTrashFill/>}
                   />
                 </div> 
                 <List mode={ListModes.BAG_CURRENCY} items={getCurrencyInfo(cur)}/>
