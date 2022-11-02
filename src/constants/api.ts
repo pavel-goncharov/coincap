@@ -10,3 +10,6 @@ export enum ApiUrls {
   ASSET_ONE = '/assets/:id',
   HISTORY = '/assets/:id/history'
 }
+
+export const limit: number = 10;
+export const totalCurrency: number = 100;

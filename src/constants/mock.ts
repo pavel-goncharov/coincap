@@ -2,9 +2,10 @@ import {IBagState} from 'store/slices/bag.slice';
 import {IAsset} from 'types/api';
 import {ICurrency, IHistory} from 'types/bag';
 
-interface IPartInitBag {
+export interface IPartInitBag {
   usd: number;
   currency: ICurrencyPartInitBag[];
+  ids: string[];
 }
 
 interface ICurrencyPartInitBag {
@@ -12,11 +13,13 @@ interface ICurrencyPartInitBag {
   history: IHistory[];
 }
 
+export const mockIds: string[] = ['bitcoin', 'ethereum', 'tether'];
+
 export const partInitBag: IPartInitBag = {
   usd: 100000,
   currency: [
     {
-      id: 'bitcoin', 
+      id: mockIds[0], 
       history: [
         {
           date: 1666523695089,
@@ -26,7 +29,7 @@ export const partInitBag: IPartInitBag = {
       ]
     },
     {
-      id: 'ethereum',
+      id: mockIds[1],
       history: [
         {
           date: 1666523772809,
@@ -41,7 +44,7 @@ export const partInitBag: IPartInitBag = {
       ]
     },
     {
-      id: 'tether',
+      id:  mockIds[2],
       history: [
         {
           date: 1666523858451,
@@ -60,7 +63,8 @@ export const partInitBag: IPartInitBag = {
         }
       ]
     }
-  ]
+  ],
+  ids: mockIds
 }
 
 function getHistoryById(currency: ICurrencyPartInitBag[] | ICurrency[], id: string): IHistory[] {
@@ -68,7 +72,7 @@ function getHistoryById(currency: ICurrencyPartInitBag[] | ICurrency[], id: stri
 }
 
 export function getDataBag(lastBag: IPartInitBag | IBagState, assets: IAsset[]): IBagState {
-  const idInitCurrency: string[] = lastBag.currency.map(currencyOne => currencyOne.id);
+  const idInitCurrency: string[] = lastBag.ids;
   
   const assetsInitCurrency: IAsset[] = [];
   assets.forEach(asset => {
@@ -87,7 +91,8 @@ export function getDataBag(lastBag: IPartInitBag | IBagState, assets: IAsset[]):
 
   const initBag: IBagState = {
     usd: lastBag.usd,
-    currency
+    currency,
+    ids: idInitCurrency
   }
 
   return initBag;

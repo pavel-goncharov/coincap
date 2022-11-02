@@ -9,32 +9,43 @@ import {getDataBag, partInitBag} from 'constants/mock';
 import {getItem, setItem} from 'utils/localStorage';
 import {useActions} from 'hooks/useActions';
 import {IBagState} from 'store/slices/bag.slice';
-import {useGetAssetsQuery} from 'api/endPoints';
+import {useGetAssetsQuery, useLazyGetAssetsQuery} from 'api/endPoints';
 import {Loader} from 'components/UI/Loader/Loader.styled';
+import {useTypedSelector} from 'hooks/useTypedSelector';
+import {IAsset} from 'types/api';
 
 const App: FC = () => {
-  const {data: assets, isLoading} = useGetAssetsQuery();
-  const {initBagState, setAssets} = useActions();
+  const ids: string = useTypedSelector(state => state.bag.ids).join();
+  const {data: assets, isLoading} = useGetAssetsQuery({ids});
+  const [getAssetsQuery] = useLazyGetAssetsQuery();
+  const {initBagState} = useActions();
 
   useEffect(() => {
-    const bag: IBagState = getItem(LocalStorageKeys.BAG);
-    if(!bag && assets) {
-      setAssets(assets); 
-      const initBag: IBagState = getDataBag(partInitBag, assets);
-      initBagState(initBag);
-      setItem(LocalStorageKeys.BAG, initBag);
-    } else if (bag && assets) {
-      setAssets(assets);
-      const updatedBag: IBagState = getDataBag(bag, assets);
-      initBagState(updatedBag);
-      setItem(LocalStorageKeys.BAG, updatedBag);
+    const bagLS: IBagState = getItem(LocalStorageKeys.BAG);
+    if(!bagLS && assets) {
+      initData(assets);
+    } else if (bagLS) {
+      updateData(bagLS);
     } 
   }, [assets]);
+
+  function initData(assets: IAsset[]): void {
+    const initBag: IBagState = getDataBag(partInitBag, assets);
+    initBagState(initBag);
+    setItem(LocalStorageKeys.BAG, initBag);
+  }
+
+  async function updateData(bagLS: IBagState): Promise<void> {
+    const assets: IAsset[] = await getAssetsQuery({ids: bagLS.ids.join()}).unwrap();
+    const updatedBag: IBagState = getDataBag(bagLS, assets);
+    initBagState(updatedBag);
+    setItem(LocalStorageKeys.BAG, updatedBag);
+  } 
 
   if(isLoading) {
     return <Loader/>
   }
-  
+
   return (
     <BrowserRouter>
       <IndexStyled/>

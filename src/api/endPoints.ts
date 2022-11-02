@@ -1,12 +1,18 @@
 import {generatePath} from 'react-router-dom';
 import appApi from 'api/api';
-import {IAsset, IHistory, IArgsHistory} from 'types/api';
+import {IAsset, IHistory, IArgsHistory, IArgsAssets} from 'types/api';
 import {apiTags, ApiUrls} from 'constants/api';
 
 const apiEndPoints = appApi.injectEndpoints({
   endpoints: (build) => ({
-    getAssets: build.query<IAsset[], void>({
-      query: () => ApiUrls.ASSETS,
+    getAssets: build.query<IAsset[], IArgsAssets>({
+      query: (args) => {
+        const {offset, limit, ids} = args;
+        return {
+          url: ApiUrls.ASSETS,
+          params: {offset, limit, ids}
+        }
+      },
       transformResponse: (res: {data: IAsset[]}) => res.data,
     }),
 
@@ -33,6 +39,7 @@ const apiEndPoints = appApi.injectEndpoints({
 
 export const {
   useGetAssetsQuery,
+  useLazyGetAssetsQuery,
   useGetAssetOneQuery,
   useGetHistoryQuery,
 } = apiEndPoints;

@@ -11,3 +11,9 @@ export function getArgsHistory(id: string): IArgsHistory {
   
   return argsHistory;
 }
+
+export function getFirstCurrency(currentPage: number, limit: number): number {
+  const last: number = currentPage * limit;
+  const first: number = last - limit;
+  return first;
+}

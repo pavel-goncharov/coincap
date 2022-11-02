@@ -5,15 +5,18 @@ import {getTotalNumber} from 'utils/bag';
 import {setItem} from 'utils/localStorage';
 import {LocalStorageKeys} from 'constants/localStorage';
 import {roundNumber} from 'utils/common';
+import {mockIds} from 'constants/mock';
 
 export interface IBagState {
   usd: number;
   currency: ICurrency[];
+  ids: string[];
 } 
 
 const initialState: IBagState = {
   usd: 0,
-  currency: []
+  currency: [],
+  ids: mockIds
 };
 
 const bagSlice = createSlice({
@@ -47,6 +50,7 @@ const bagSlice = createSlice({
         };
         currentCurrency.push(newBagCurrency);
         state.currency = currentCurrency;
+        state.ids.push(asset.id);
       }
       state.usd = roundNumber(state.usd - cost);
       setItem(LocalStorageKeys.BAG, state);
@@ -64,7 +68,7 @@ const bagSlice = createSlice({
         };
         currencyOne.history.push(historyItem);
 
-        state.usd += usd;
+        state.usd = roundNumber(state.usd + usd);
         setItem(LocalStorageKeys.BAG, state);
       }
     }

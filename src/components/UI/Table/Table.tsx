@@ -2,26 +2,23 @@ import {FC, ReactNode} from 'react';
 import {Container, Content, Td} from 'components/UI/Table/Table.styled';
 import {RoutePaths} from 'router/router';
 import {generatePath, useNavigate} from 'react-router-dom';
-import {IMainTableItem, IPagination} from 'types/ui';
+import {IMainTableItem} from 'types/ui';
 import Pagination from 'components/UI/Pagination/Pagination';
 import {setColorTd} from 'utils/table';
+import {limit, totalCurrency} from 'constants/api';
 
 interface ITable {
   tHeaders: string[];
   tData: IMainTableItem[];
   columnsColor?: number[];
-  isMoveToPageRow: boolean;
-  pag: IPagination;
 }
 
 const Table: FC<ITable> = (props) => {
-  const {tHeaders, tData, columnsColor, isMoveToPageRow, pag} = props;
-  const {currencyPerPage, totalCurrency} = pag;
+  const {tHeaders, tData, columnsColor} = props;
 
   const navigate = useNavigate();
 
   function goToCurrencyPage(id: string): void {
-    if(!isMoveToPageRow) return; 
     const pagePath = generatePath(RoutePaths.CURRENCY, {id});
     navigate(pagePath);
   }
@@ -55,7 +52,7 @@ const Table: FC<ITable> = (props) => {
         </tbody>
       </Content>
       <Pagination 
-        currencyPerPage={currencyPerPage}
+        currencyPerPage={limit}
         totalCurrency={totalCurrency}
       />
     </Container>

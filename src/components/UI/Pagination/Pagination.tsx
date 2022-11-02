@@ -12,12 +12,12 @@ const Pagination: FC<IPagination> = (props) => {
   const {currencyPerPage, totalCurrency} = props;
 
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
-  const {setMainPagItem: setCurrentMain} = useActions();
+  const {setMainPagItem} = useActions();
 
   useEffect(() => {
     const mainPagItem: number = getItem(LocalStorageKeys.MAIN_PAG_ITEM); 
     if(mainPagItem) {
-      setCurrentMain(mainPagItem);
+      setMainPagItem(mainPagItem);
     } else {
       setItem(LocalStorageKeys.MAIN_PAG_ITEM, 1);
     }
@@ -34,11 +34,11 @@ const Pagination: FC<IPagination> = (props) => {
   }
   
   function goToPrevPage(): void {
-    setCurrentMain(currentPage - 1);
+    setMainPagItem(currentPage - 1);
   }
 
   function goToNextPage(): void {
-    setCurrentMain(currentPage + 1);
+    setMainPagItem(currentPage + 1);
   }
 
   const isFirstPage: boolean = currentPage === 1;
@@ -58,7 +58,7 @@ const Pagination: FC<IPagination> = (props) => {
           {getPageNumbers().map(page =>
             <li key={page}>
               <PagButton
-                onClick={() => setCurrentMain(page)}
+                onClick={() => setMainPagItem(page)}
                 isActive={isActivePage(page)}
               >
                 {page}

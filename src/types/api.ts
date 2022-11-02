@@ -24,3 +24,9 @@ export interface IArgsHistory {
   interval: string;
   fromEnd: number;
 }
+
+export interface IArgsAssets {
+  offset?: number;
+  limit?: number;
+  ids?: string;
+}
