@@ -1,14 +1,14 @@
 import {FC, FormEvent, useState} from 'react';
 import {Modal} from 'components/UI/Modal/Modal';
 import {Container} from 'components/Common/BuyingModal/BuyingModal.styled';
-import Input from 'components/UI/Input/Input';
+import InputNumber from 'components/UI/InputNumber/InputNumber';
 import Button, {BtnTypes, BtnModes} from 'components/UI/Button/Button';
 import {IAsset} from 'types/api';
 import {roundNumber} from 'utils/common';
 import {useActions} from 'hooks/useActions';
 import {IPayloadSetNumber} from 'types/bag';
 import {useTypedSelector} from 'hooks/useTypedSelector';
-import {maxNumber} from 'constants/ui';
+import {IInputNumberSt} from 'components/UI/InputNumber/InputNumber.styled';
 
 interface IAddModal {
   currency: IAsset | null;
@@ -22,14 +22,13 @@ const AddModal: FC<IAddModal> = (props) => {
 
   const [value, setValue] = useState<number>(1);
 
-  
   function getHintStr(value: number, currency: IAsset | null): string {
     const number: number = value <= maxNumber ? value : maxNumber;
     const totalUsd: number = roundNumber(number * Number(currency?.priceUsd));
     return `${number} ${currency?.symbol} = $${totalUsd}`;
   }
 
-  function handlerOnSubmit(e: FormEvent<HTMLInputElement>) {
+  function handlerOnSubmit(e: FormEvent<HTMLInputElement>): void {
     e.preventDefault();
     if(currency) {
       const args: IPayloadSetNumber = {
@@ -41,6 +40,13 @@ const AddModal: FC<IAddModal> = (props) => {
     }
   }
 
+  const maxNumber: number = 1000000000;
+  const inputPropsSt: IInputNumberSt = {
+    step: 0.01,
+    min: 0.01,
+    max: maxNumber, 
+    placeholder: 'input number'
+  }
   const addModalTitle: string = `Buying ${currency?.symbol}`
   const btnTitle: string = 'Confirm';
   const hintStr: string = getHintStr(value, currency);
@@ -52,9 +58,10 @@ const AddModal: FC<IAddModal> = (props) => {
       title={addModalTitle}
     >
       <Container>
-        <Input
+        <InputNumber
           value={value}
           setValue={setValue}
+          propsSt={inputPropsSt}
         />
         <p>{hintStr}</p>
         <Button

@@ -18,3 +18,13 @@ export interface IPayloadSetNumber {
   asset: IAsset;
   number: number;
 }
+
+export interface IPartInitBag {
+  currency: ICurrencyPartInitBag[];
+  ids: string[];
+}
+
+export interface ICurrencyPartInitBag {
+  id: string;
+  history: IHistory[];
+}

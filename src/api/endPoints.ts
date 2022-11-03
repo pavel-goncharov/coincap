@@ -1,7 +1,13 @@
 import {generatePath} from 'react-router-dom';
 import appApi from 'api/api';
 import {IAsset, IHistory, IArgsHistory, IArgsAssets} from 'types/api';
-import {apiTags, ApiUrls} from 'constants/api';
+import {apiTags} from 'api/constants';
+
+const enum ApiUrls {
+  ASSETS = '/assets',
+  ASSET_ONE = '/assets/:id',
+  HISTORY = '/assets/:id/history'
+}
 
 const apiEndPoints = appApi.injectEndpoints({
   endpoints: (build) => ({
@@ -23,7 +29,7 @@ const apiEndPoints = appApi.injectEndpoints({
     }),
 
     getHistory: build.query<IHistory[], IArgsHistory>({
-      query: (args) => { 
+      query: (args) => {
         const {id, interval, fromEnd} = args;
         const end: number = Date.now();
         const start: number = end - fromEnd;

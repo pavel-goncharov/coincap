@@ -1,10 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {SliceNames} from 'constants/slices';
 import {ICurrency, IHistory, IPayloadSetNumber} from 'types/bag';
 import {getTotalNumber} from 'utils/bag';
 import {setItem} from 'utils/localStorage';
-import {LocalStorageKeys} from 'constants/localStorage';
-import {mockIds} from 'constants/mock';
+import {LocalStorageKeys} from 'utils/localStorage';
+import {mockIds} from 'mock/bag.mock';
 
 export interface IBagState {
   currency: ICurrency[];
@@ -17,7 +16,7 @@ const initialState: IBagState = {
 };
 
 const bagSlice = createSlice({
-  name: SliceNames.BAG,
+  name: 'bag',
   initialState,
   reducers: {
     initBagState(state, action: PayloadAction<IBagState>) {
@@ -25,7 +24,7 @@ const bagSlice = createSlice({
       state.currency = currency;
       state.ids = ids;
     },
-    setNumberCurrency(state, action: PayloadAction<IPayloadSetNumber>) {  
+    setNumberCurrency(state, action: PayloadAction<IPayloadSetNumber>) {
       const {asset, number} = action.payload;
       const currentCurrency: ICurrency[] = state.currency;
       const currencyOne = currentCurrency.find(currencyOne => currencyOne.id === asset.id);
@@ -36,7 +35,7 @@ const bagSlice = createSlice({
         priceUsd: Number(asset.priceUsd)
       };
       
-      if(currencyOne) {      
+      if(currencyOne) {
         currencyOne.history.push(historyItem);
       } else {
         const newBagCurrency: ICurrency = {

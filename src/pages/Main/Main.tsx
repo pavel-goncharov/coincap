@@ -1,4 +1,4 @@
-import {FC, ReactNode, useEffect, useState} from 'react';
+import {FC, MouseEvent, ReactNode, useEffect, useState} from 'react';
 import Table from 'components/UI/Table/Table';
 import {IAsset} from 'types/api';
 import {IMainTableItem} from 'types/ui';
@@ -12,7 +12,7 @@ import {useActions} from 'hooks/useActions';
 import {Loader} from 'components/UI/Loader/Loader.styled';
 import {useGetAssetsQuery} from 'api/endPoints';
 import {getFirstCurrency} from 'utils/currency';
-import {limit} from 'constants/api';
+import {limit} from 'api/constants';
 
 const Main: FC = () => {
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
@@ -23,7 +23,7 @@ const Main: FC = () => {
   const [currency, setCurrency] = useState<IMainTableItem[]>([]);
   const [currentCurrency, setCurrentCurrency] = useState<IAsset | null>(null);
 
-  useEffect(() => {   
+  useEffect(() => {
     if(assets) {
       const cryptoInfoDataTable = getDataForCryptoTable(assets);
       setCurrency(cryptoInfoDataTable);
@@ -55,7 +55,7 @@ const Main: FC = () => {
     return cryptoInfoDataTable;
   }
 
-  function handlerAddBtn(e: Event, currency: IAsset): void {
+  function handlerAddBtn(e: MouseEvent<HTMLButtonElement>, currency: IAsset): void {
     e.stopPropagation();
     setCurrentCurrency(currency);
     setIsActiveBuyingModal();
@@ -74,7 +74,7 @@ const Main: FC = () => {
     'VWAP(24Hr)', 'Supply', 'Volume(24Hr)',
     'Change(24Hr)'
   ];
-  const columnsColor: number[] = [0, 8];
+  const columnsColor: number[] = [8];
   
   if(isLoading) {
     return <Loader/>

@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {LocalStorageKeys} from 'constants/localStorage';
-import {SliceNames} from 'constants/slices';
+import {LocalStorageKeys} from 'utils/localStorage';
 import {IAsset} from 'types/api';
 import {setItem} from 'utils/localStorage';
 
@@ -17,7 +16,7 @@ const initialState: ICommonState = {
 };
 
 const commonSlice = createSlice({
-  name: SliceNames.COMMON,
+  name: 'common',
   initialState,
   reducers: {
     setMainPagItem(state, action: PayloadAction<number>) {
