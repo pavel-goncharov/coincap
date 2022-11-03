@@ -8,8 +8,12 @@ export function setItem(key: LocalStorageKeys, value: any): void {
   localStorage.setItem(key, strValue);
 }
 
-export function getItem<T>(key: LocalStorageKeys): T {
+export function getItem<T>(key: LocalStorageKeys): T | null {
   const valueStr: string = localStorage.getItem(key)!;
-  const value: T = JSON.parse(valueStr);
-  return value;
+  try {
+    const value: T = JSON.parse(valueStr);
+    return value;
+  } catch {
+    return null;
+  }
 }
