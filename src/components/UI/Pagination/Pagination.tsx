@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Container, Content, PagButton} from 'components/UI/Pagination/Pagination.styled';
 import {IPagination} from 'types/ui';
 import Button, {BtnModes} from 'components/UI/Button/Button';
@@ -14,16 +14,22 @@ const Pagination: FC<IPagination> = (props) => {
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
   const {setMainPagItem} = useActions();
 
+  const [pageNumbers, setPageNumbers] = useState<number[]>([]);
+
   useEffect(() => {
-    const mainPagItem = getItem<number>(LocalStorageKeys.MAIN_PAG_ITEM); 
+    const pagNumbers: number[] = calcPagNumbers();
+    setPageNumbers(pagNumbers);
+
+    const mainPagItem = getItem<number>(LocalStorageKeys.MAIN_PAG_ITEM);    
     if(mainPagItem) {
-      setMainPagItem(mainPagItem);
+      const hasNumber: boolean = pagNumbers.includes(mainPagItem);
+      setMainPagItem(hasNumber ? mainPagItem : 1);
     } else {
       setItem(LocalStorageKeys.MAIN_PAG_ITEM, 1);
     }
   }, []);
 
-  function getPageNumbers(): number[] {
+  function calcPagNumbers(): number[] {
     const pageNumbers = [];
     
     for(let i: number = 1; i <= Math.ceil(totalCurrency / currencyPerPage); i++) {
@@ -55,7 +61,7 @@ const Pagination: FC<IPagination> = (props) => {
           disabled={isFirstPage}
         />
         <ul>
-          {getPageNumbers().map(page =>
+          {pageNumbers.map(page =>
             <li key={page}>
               <PagButton
                 onClick={() => setMainPagItem(page)}
