@@ -6,7 +6,7 @@ import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons
 import {useTypedSelector} from 'hooks/useTypedSelector';
 import {useActions} from 'hooks/useActions';
 import {getItem, setItem} from 'utils/localStorage';
-import {LocalStorageKeys} from 'constants/localStorage';
+import {LocalStorageKeys} from 'utils/localStorage';
 
 const Pagination: FC<IPagination> = (props) => {
   const {currencyPerPage, totalCurrency} = props;

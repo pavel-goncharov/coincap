@@ -18,7 +18,7 @@ export const Container = styled.ul<IList>`
     }
   }
 
-  @media (max-width: 576px) {     
+  @media (max-width: 576px) {
     > li  {
       flex-direction: ${Directions.COLUMN};
     }

@@ -5,7 +5,7 @@ import {generatePath, useNavigate} from 'react-router-dom';
 import {IMainTableItem} from 'types/ui';
 import Pagination from 'components/UI/Pagination/Pagination';
 import {setColorTd} from 'utils/table';
-import {limit, totalCurrency} from 'constants/api';
+import {limit, totalCurrency} from 'api/constants';
 
 interface ITable {
   tHeaders: string[];

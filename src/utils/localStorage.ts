@@ -1,4 +1,7 @@
-import {LocalStorageKeys} from 'constants/localStorage';
+export enum LocalStorageKeys {
+  BAG = 'bag',
+  MAIN_PAG_ITEM = 'mainPagItem'
+}
 
 export function setItem(key: LocalStorageKeys, value: any): void {
   const strValue: string = JSON.stringify(value);

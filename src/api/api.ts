@@ -1,10 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import {apiReducerPath, apiTags, API_URL} from 'constants/api';
+import {apiTags} from 'api/constants';
 
 const appApi = createApi({
-  reducerPath: apiReducerPath,
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL, 
+    baseUrl: 'https://api.coincap.io/v2', 
   }),
   tagTypes: Object.values(apiTags),
   endpoints: () => ({})
