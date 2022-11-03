@@ -22,7 +22,7 @@ const App: FC = () => {
   const {initBagState} = useActions();
 
   useEffect(() => {
-    const bagLS: IBagState = getItem(LocalStorageKeys.BAG);
+    const bagLS = getItem<IBagState>(LocalStorageKeys.BAG);
     if(!bagLS && assets) {
       initData(assets);
     } else if (bagLS) {

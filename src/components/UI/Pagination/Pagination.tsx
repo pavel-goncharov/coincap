@@ -15,7 +15,7 @@ const Pagination: FC<IPagination> = (props) => {
   const {setMainPagItem} = useActions();
 
   useEffect(() => {
-    const mainPagItem: number = getItem(LocalStorageKeys.MAIN_PAG_ITEM); 
+    const mainPagItem = getItem<number>(LocalStorageKeys.MAIN_PAG_ITEM); 
     if(mainPagItem) {
       setMainPagItem(mainPagItem);
     } else {

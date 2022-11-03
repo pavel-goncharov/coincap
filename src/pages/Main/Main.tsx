@@ -1,4 +1,4 @@
-import {FC, ReactNode, useEffect, useState} from 'react';
+import {FC, MouseEvent, ReactNode, useEffect, useState} from 'react';
 import Table from 'components/UI/Table/Table';
 import {IAsset} from 'types/api';
 import {IMainTableItem} from 'types/ui';
@@ -55,7 +55,7 @@ const Main: FC = () => {
     return cryptoInfoDataTable;
   }
 
-  function handlerAddBtn(e: Event, currency: IAsset): void {
+  function handlerAddBtn(e: MouseEvent<HTMLButtonElement>, currency: IAsset): void {
     e.stopPropagation();
     setCurrentCurrency(currency);
     setIsActiveBuyingModal();

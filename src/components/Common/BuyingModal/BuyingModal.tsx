@@ -28,7 +28,7 @@ const AddModal: FC<IAddModal> = (props) => {
     return `${number} ${currency?.symbol} = $${totalUsd}`;
   }
 
-  function handlerOnSubmit(e: FormEvent<HTMLInputElement>) {
+  function handlerOnSubmit(e: FormEvent<HTMLInputElement>): void {
     e.preventDefault();
     if(currency) {
       const args: IPayloadSetNumber = {
