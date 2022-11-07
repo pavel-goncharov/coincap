@@ -1,14 +1,14 @@
 import {FC, FormEvent, useState} from 'react';
-import {Modal} from 'components/UI/Modal/Modal';
-import {Container} from 'components/Common/BuyingModal/BuyingModal.styled';
-import InputNumber from 'components/UI/InputNumber/InputNumber';
-import Button, {BtnTypes, BtnModes} from 'components/UI/Button/Button';
-import {IAsset} from 'types/api';
-import {roundNumber} from 'utils/common';
-import {useActions} from 'hooks/useActions';
-import {IPayloadSetNumber} from 'types/bag';
-import {useTypedSelector} from 'hooks/useTypedSelector';
-import {IInputNumberSt} from 'components/UI/InputNumber/InputNumber.styled';
+import {Modal} from '@/components/UI/Modal/Modal';
+import {Container} from '@/components/Common/BuyingModal/BuyingModal.styled';
+import InputNumber from '@/components/UI/InputNumber/InputNumber';
+import Button, {BtnTypes, BtnModes} from '@/components/UI/Button/Button';
+import {IAsset} from '@/types/api';
+import {roundNumber} from '@/utils/common';
+import {useActions} from '@/hooks/useActions';
+import {IPayloadSetNumber} from '@/types/bag';
+import {useTypedSelector} from '@/hooks/useTypedSelector';
+import {IInputNumberSt} from '@/components/UI/InputNumber/InputNumber.styled';
 
 interface IAddModal {
   currency: IAsset | null;

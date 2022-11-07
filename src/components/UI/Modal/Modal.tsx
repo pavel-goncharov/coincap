@@ -1,7 +1,7 @@
 import {FC, ReactNode} from 'react';
-import {Container} from 'components/UI/Modal/Modal.styled';
+import {Container} from '@/components/UI/Modal/Modal.styled';
 import {MdOutlineClose} from 'react-icons/md';
-import Button, {BtnModes} from 'components/UI/Button/Button';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
 
 interface IModal {
   isActive: boolean;

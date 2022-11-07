@@ -1,12 +1,12 @@
 import {FC, useEffect, useState} from 'react';
-import {Container, Content, PagButton} from 'components/UI/Pagination/Pagination.styled';
-import {IPagination} from 'types/ui';
-import Button, {BtnModes} from 'components/UI/Button/Button';
+import {Container, Content, PagButton} from '@/components/UI/Pagination/Pagination.styled';
+import {IPagination} from '@/types/ui';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
 import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs';
-import {useTypedSelector} from 'hooks/useTypedSelector';
-import {useActions} from 'hooks/useActions';
-import {getItem, setItem} from 'utils/localStorage';
-import {LocalStorageKeys} from 'utils/localStorage';
+import {useTypedSelector} from '@/hooks/useTypedSelector';
+import {useActions} from '@/hooks/useActions';
+import {getItem, setItem} from '@/utils/localStorage';
+import {LocalStorageKeys} from '@/utils/localStorage';
 
 const Pagination: FC<IPagination> = (props) => {
   const {currencyPerPage, totalCurrency} = props;

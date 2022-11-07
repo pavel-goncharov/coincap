@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
-import {Directions, flex} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
-import {ListModes} from 'components/UI/List/List';
+import {Directions, flex} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
+import {ListModes} from '@/components/UI/List/List';
 
 interface IList {
   mode: ListModes;

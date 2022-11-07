@@ -1,7 +1,7 @@
 import {ChartData, ChartOptions} from 'chart.js';
-import {Colors} from 'styles/vars';
-import {IHistory} from 'types/api';
-import {line} from 'types/ui';
+import {Colors} from '@/styles/vars';
+import {IHistory} from '@/types/api';
+import {line} from '@/types/ui';
 
 export function getChartData(cryptoHistory: IHistory[]): ChartData<line> {
   const historyChartData: ChartData<line> = {

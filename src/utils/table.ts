@@ -1,6 +1,6 @@
 import {ReactNode} from 'react';
-import {Colors} from 'styles/vars';
-import {getStrSignNumber, roundNumber, setColorText} from 'utils/common';
+import {Colors} from '@/styles/vars';
+import {getStrSignNumber, roundNumber, setColorText} from '@/utils/common';
 
 export function setColorTd(columns: number[], y: number, title: string | ReactNode): Colors {
   if(!columns || !columns.includes(y) || typeof(title) !== 'string') {

@@ -1,5 +1,5 @@
 import styled, {keyframes} from 'styled-components';
-import {Colors} from 'styles/vars';
+import {Colors} from '@/styles/vars';
 
 const rotate = keyframes`
   0% {

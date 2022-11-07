@@ -1,7 +1,7 @@
 import {generatePath} from 'react-router-dom';
-import appApi from 'api/api';
-import {IAsset, IHistory, IArgsHistory, IArgsAssets} from 'types/api';
-import {apiTags} from 'api/constants';
+import appApi from '@/api/api';
+import {IAsset, IHistory, IArgsHistory, IArgsAssets} from '@/types/api';
+import {apiTags} from '@/api/constants';
 
 const enum ApiUrls {
   ASSETS = '/assets',

@@ -1,10 +1,10 @@
 import {FC, Fragment} from 'react';
-import {ITopCurrency} from 'types/ui';
-import {Container, SpanDiff} from 'components/UI/Header/TopCurrency/TopCurrency.styled';
-import {ICurrency} from 'types/bag';
-import {useTypedSelector} from 'hooks/useTypedSelector';
-import {getTopTreeCurrency, hasBagCurrency} from 'utils/topCurrency';
-import {getStrSignNumber, setColorText} from 'utils/common';
+import {ITopCurrency} from '@/types/ui';
+import {Container, SpanDiff} from '@/components/UI/Header/TopCurrency/TopCurrency.styled';
+import {ICurrency} from '@/types/bag';
+import {useTypedSelector} from '@/hooks/useTypedSelector';
+import {getTopTreeCurrency, hasBagCurrency} from '@/utils/topCurrency';
+import {getStrSignNumber, setColorText} from '@/utils/common';
 
 const TopCurrency: FC = () => {
   const currency: ICurrency[] = useTypedSelector(state => state.bag.currency);

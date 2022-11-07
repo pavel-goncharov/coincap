@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
-import {Aligns, flex, Justifys} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
-import {BtnModes} from 'components/UI/Button/Button';
+import {Aligns, flex, Justifys} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
+import {BtnModes} from '@/components/UI/Button/Button';
 
 interface IButton {
   mode: BtnModes;

@@ -1,7 +1,7 @@
 import styled, {css} from 'styled-components';
-import {Aligns, Directions, flex, Justifys} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
-import {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
+import {Aligns, Directions, flex, Justifys} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
+import {CurrencyTitleModes} from '@/components/Common/CurrencyTitle/CurrencyTitle';
 
 interface ICurrencyTitle {
   mode: CurrencyTitleModes;

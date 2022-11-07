@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import {Fonts} from 'styles/vars';
+import {Fonts} from '@/styles/vars';
 
 export interface IMainTableItem {
   id: string;

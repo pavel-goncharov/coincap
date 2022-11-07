@@ -1,8 +1,8 @@
-import {IHistory} from 'types/bag';
-import {ICurrency} from 'types/bag';
-import {IDiffs, ITopCurrency} from 'types/ui';
-import {getTotalNumber} from 'utils/bag';
-import {roundNumber} from 'utils/common';
+import {IHistory} from '@/types/bag';
+import {ICurrency} from '@/types/bag';
+import {IDiffs, ITopCurrency} from '@/types/ui';
+import {getTotalNumber} from '@/utils/bag';
+import {roundNumber} from '@/utils/common';
 
 export function getTopTreeCurrency(currency: ICurrency[]): ITopCurrency[] {
   const allCurrency: ITopCurrency[] = currency.map((currencyOne: ICurrency) => {

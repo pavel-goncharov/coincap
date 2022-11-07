@@ -1,6 +1,6 @@
-import {IRoute} from 'types/router';
-import Currency from 'pages/Currency/Currency';
-import Main from 'pages/Main/Main';
+import {IRoute} from '@/types/router';
+import Currency from '@/pages/Currency/Currency';
+import Main from '@/pages/Main/Main';
 
 export enum RoutePaths {
   REDIRECT = '*',

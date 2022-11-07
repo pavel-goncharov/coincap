@@ -1,4 +1,4 @@
-import {Colors} from 'styles/vars';
+import {Colors} from '@/styles/vars';
 
 export function roundNumber(number: number, power: number = 2): number {
   const rate: number = Math.pow(10, power); 

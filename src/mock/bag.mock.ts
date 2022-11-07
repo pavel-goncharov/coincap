@@ -1,4 +1,4 @@
-import {IPartInitBag} from 'types/bag';
+import {IPartInitBag} from '@/types/bag';
 
 export const mockIds: string[] = ['bitcoin', 'ethereum', 'tether'];
 

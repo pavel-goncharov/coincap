@@ -1,6 +1,6 @@
 import {FC} from 'react';
-import {IListItem} from 'types/ui';
-import {Container} from 'components/UI/List/List.styled';
+import {IListItem} from '@/types/ui';
+import {Container} from '@/components/UI/List/List.styled';
 
 export const enum ListModes {
   CURRENCY_PAGE = 'currencyPage',

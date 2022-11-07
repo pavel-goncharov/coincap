@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Container} from 'components/Common/CurrencyTitle/CurrencyTitle.styled';
+import {Container} from '@/components/Common/CurrencyTitle/CurrencyTitle.styled';
 
 export enum CurrencyTitleModes {
   TABLE = 'table',

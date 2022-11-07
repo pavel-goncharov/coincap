@@ -1,10 +1,10 @@
 import {FC, useState} from 'react';
-import {Container} from 'components/UI/Header/Header.styled';
-import Button, {BtnModes} from 'components/UI/Button/Button';
+import {Container} from '@/components/UI/Header/Header.styled';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
 import {BsFillBagFill} from 'react-icons/bs';
-import Logo from 'components/UI/Logo/Logo';
-import BagModal from 'components/Common/BagModal/BagModal';
-import TopCurrency from 'components/UI/Header/TopCurrency/TopCurrency';
+import Logo from '@/components/UI/Logo/Logo';
+import BagModal from '@/components/Common/BagModal/BagModal';
+import TopCurrency from '@/components/UI/Header/TopCurrency/TopCurrency';
 
 const Header: FC = () => {
   const [isActiveBagModal, setIsActiveBagModal] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import {IAsset} from 'types/api';
+import {IAsset} from '@/types/api';
 
 export interface ICurrency {
   id: string;

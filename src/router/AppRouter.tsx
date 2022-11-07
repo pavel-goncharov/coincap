@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {Route, Routes} from 'react-router-dom';
-import {routes} from 'router/router';
+import {routes} from '@/router/router';
 
 const AppRouter: FC = () => {
   return (

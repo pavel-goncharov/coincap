@@ -6,8 +6,8 @@ import {
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
 import {FC} from 'react';
-import {line} from 'types/ui';
-import {Container} from 'components/UI/Chart/Chart.styled'; 
+import {line} from '@/types/ui';
+import {Container} from '@/components/UI/Chart/Chart.styled'; 
 
 interface IChart {
   options: ChartOptions<line>;

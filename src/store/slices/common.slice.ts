@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {LocalStorageKeys} from 'utils/localStorage';
-import {IAsset} from 'types/api';
-import {setItem} from 'utils/localStorage';
+import {LocalStorageKeys} from '@/utils/localStorage';
+import {IAsset} from '@/types/api';
+import {setItem} from '@/utils/localStorage';
 
 interface ICommonState {
   mainPagItem: number;

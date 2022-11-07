@@ -1,8 +1,8 @@
-import {IBagState} from 'store/slices/bag.slice';
-import {IAsset} from 'types/api';
-import {ICurrency, ICurrencyPartInitBag, IHistory, IPartInitBag} from 'types/bag';
-import {IListItem} from 'types/ui';
-import {roundNumber} from 'utils/common';
+import {IBagState} from '@/store/slices/bag.slice';
+import {IAsset} from '@/types/api';
+import {ICurrency, ICurrencyPartInitBag, IHistory, IPartInitBag} from '@/types/bag';
+import {IListItem} from '@/types/ui';
+import {roundNumber} from '@/utils/common';
 
 export function getTotalCostBag(currency: ICurrency[]): number {
   return roundNumber(currency.reduce(

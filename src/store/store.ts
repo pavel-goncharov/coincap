@@ -1,7 +1,7 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import appApi from 'api/api';
-import commonSlice from 'store/slices/common.slice';
-import bagSlice from 'store/slices/bag.slice';
+import appApi from '@/api/api';
+import commonSlice from '@/store/slices/common.slice';
+import bagSlice from '@/store/slices/bag.slice';
 
 const sliceReducers = {
   common: commonSlice.reducer,

@@ -1,5 +1,5 @@
 import {FC, ReactNode} from 'react';
-import {Container} from 'components/UI/Button/Button.styled';
+import {Container} from '@/components/UI/Button/Button.styled';
 
 export enum BtnTypes {
   button = 'button',

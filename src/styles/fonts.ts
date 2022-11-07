@@ -1,12 +1,12 @@
 import {css, FlattenSimpleInterpolation} from 'styled-components';
-import OpenSansBoldTtf from 'assets/fonts/OpenSans-Bold.ttf';
-import InterMediumTtf from 'assets/fonts/Inter-Medium.ttf';
-import InterSemiBoldTtf from 'assets/fonts/Inter-SemiBold.ttf';
-import InterBoldTtf from 'assets/fonts/Inter-Bold.ttf';
-import InterRegularTtf from 'assets/fonts/Inter-Regular.ttf';
-import InterExtraBoldTtf from 'assets/fonts/Inter-ExtraBold.ttf';
-import {IFont} from 'types/ui';
-import {Fonts} from 'styles/vars';
+import OpenSansBoldTtf from '@/assets/fonts/OpenSans-Bold.ttf';
+import InterMediumTtf from '@/assets/fonts/Inter-Medium.ttf';
+import InterSemiBoldTtf from '@/assets/fonts/Inter-SemiBold.ttf';
+import InterBoldTtf from '@/assets/fonts/Inter-Bold.ttf';
+import InterRegularTtf from '@/assets/fonts/Inter-Regular.ttf';
+import InterExtraBoldTtf from '@/assets/fonts/Inter-ExtraBold.ttf';
+import {IFont} from '@/types/ui';
+import {Fonts} from '@/styles/vars';
 
 export const fonts: IFont[] = [
   {name: Fonts.OPEN_SANS_BOLD, path: OpenSansBoldTtf},

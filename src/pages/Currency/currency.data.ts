@@ -1,6 +1,6 @@
-import {IAsset} from 'types/api';
-import {IListItem} from 'types/ui';
-import {calcTableValue} from 'utils/table';
+import {IAsset} from '@/types/api';
+import {IListItem} from '@/types/ui';
+import {calcTableValue} from '@/utils/table';
 
 export function getCurrencyList(currency: IAsset): IListItem[] {
   const currencyList: IListItem[] = [

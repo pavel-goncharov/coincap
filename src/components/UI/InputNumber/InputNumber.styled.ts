@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Colors, Fonts} from 'styles/vars';
+import {Colors, Fonts} from '@/styles/vars';
 
 export interface IInputNumberSt {
   step: number,

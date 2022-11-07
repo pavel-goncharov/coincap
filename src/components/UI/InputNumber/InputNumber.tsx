@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Container, IInputNumberSt} from 'components/UI/InputNumber/InputNumber.styled';
+import {Container, IInputNumberSt} from '@/components/UI/InputNumber/InputNumber.styled';
 
 interface IInputNumber {
   value: number;

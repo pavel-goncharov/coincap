@@ -1,18 +1,18 @@
 import {FC, MouseEvent, ReactNode, useEffect, useState} from 'react';
-import Table from 'components/UI/Table/Table';
-import {IAsset} from 'types/api';
-import {IMainTableItem} from 'types/ui';
-import AddModal from 'components/Common/BuyingModal/BuyingModal';
-import {calcTableValue} from 'utils/table';
-import Button, {BtnModes} from 'components/UI/Button/Button';
+import Table from '@/components/UI/Table/Table';
+import {IAsset} from '@/types/api';
+import {IMainTableItem} from '@/types/ui';
+import AddModal from '@/components/Common/BuyingModal/BuyingModal';
+import {calcTableValue} from '@/utils/table';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
 import {BsPlusSquareFill} from 'react-icons/bs';
-import CurrencyTitle, {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
-import {useTypedSelector} from 'hooks/useTypedSelector';
-import {useActions} from 'hooks/useActions';
-import {Loader} from 'components/UI/Loader/Loader.styled';
-import {useGetAssetsQuery} from 'api/endPoints';
-import {getFirstCurrency} from 'utils/currency';
-import {limit} from 'api/constants';
+import CurrencyTitle, {CurrencyTitleModes} from '@/components/Common/CurrencyTitle/CurrencyTitle';
+import {useTypedSelector} from '@/hooks/useTypedSelector';
+import {useActions} from '@/hooks/useActions';
+import {Loader} from '@/components/UI/Loader/Loader.styled';
+import {useGetAssetsQuery} from '@/api/endPoints';
+import {getFirstCurrency} from '@/utils/currency';
+import {limit} from '@/api/constants';
 
 const Main: FC = () => {
   const currentPage = useTypedSelector(store => store.common.mainPagItem);

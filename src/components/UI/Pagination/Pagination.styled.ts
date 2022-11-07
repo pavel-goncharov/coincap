@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
-import {Aligns, flex, Justifys} from 'styles/mixins/flex';
-import {Colors} from 'styles/vars';
+import {Aligns, flex, Justifys} from '@/styles/mixins/flex';
+import {Colors} from '@/styles/vars';
 
 interface IPagButton {
   isActive: boolean;

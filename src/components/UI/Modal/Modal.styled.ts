@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
-import {Aligns, Directions, Displays, flex, Justifys} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
+import {Aligns, Directions, Displays, flex, Justifys} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
 
 interface IContainerModal {
   isActive: boolean;

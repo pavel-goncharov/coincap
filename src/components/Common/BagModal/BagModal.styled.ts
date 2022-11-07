@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {flex, Justifys, Wraps} from 'styles/mixins/flex';
-import {Colors} from 'styles/vars';
+import {flex, Justifys, Wraps} from '@/styles/mixins/flex';
+import {Colors} from '@/styles/vars';
 
 export const ListItem = styled.li`
   padding: 15px 20px;

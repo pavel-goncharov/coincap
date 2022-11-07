@@ -1,6 +1,6 @@
 import styled, {createGlobalStyle} from 'styled-components';
-import {initFontFaces, fonts} from 'styles/fonts';
-import {Fonts} from 'styles/vars';
+import {initFontFaces, fonts} from '@/styles/fonts';
+import {Fonts} from '@/styles/vars';
 
 
 export const IndexStyled = createGlobalStyle`

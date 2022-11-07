@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ICurrency, IHistory, IPayloadSetNumber} from 'types/bag';
-import {getTotalNumber} from 'utils/bag';
-import {setItem} from 'utils/localStorage';
-import {LocalStorageKeys} from 'utils/localStorage';
-import {mockIds} from 'mock/bag.mock';
+import {ICurrency, IHistory, IPayloadSetNumber} from '@/types/bag';
+import {getTotalNumber} from '@/utils/bag';
+import {setItem} from '@/utils/localStorage';
+import {LocalStorageKeys} from '@/utils/localStorage';
+import {mockIds} from '@/mock/bag.mock';
 
 export interface IBagState {
   currency: ICurrency[];

@@ -1,11 +1,11 @@
 import {FC, ReactNode} from 'react';
-import {Container, Content, Td} from 'components/UI/Table/Table.styled';
-import {RoutePaths} from 'router/router';
+import {Container, Content, Td} from '@/components/UI/Table/Table.styled';
+import {RoutePaths} from '@/router/router';
 import {generatePath, useNavigate} from 'react-router-dom';
-import {IMainTableItem} from 'types/ui';
-import Pagination from 'components/UI/Pagination/Pagination';
-import {setColorTd} from 'utils/table';
-import {limit, totalCurrency} from 'api/constants';
+import {IMainTableItem} from '@/types/ui';
+import Pagination from '@/components/UI/Pagination/Pagination';
+import {setColorTd} from '@/utils/table';
+import {limit, totalCurrency} from '@/api/constants';
 
 interface ITable {
   tHeaders: string[];

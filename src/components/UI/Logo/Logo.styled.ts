@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {flex} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
+import {flex} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
 
 export const Container = styled.div`
   cursor: pointer;

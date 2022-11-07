@@ -1,21 +1,21 @@
 import {FC, useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import Chart from 'components/UI/Chart/Chart';
-import {IAsset} from 'types/api';
-import {IListItem, line} from 'types/ui';
-import Button, {BtnModes} from 'components/UI/Button/Button';
-import Checkbox from 'components/UI/Checkbox/Checkbox';
-import List, {ListModes} from 'components/UI/List/List';
-import AddModal from 'components/Common/BuyingModal/BuyingModal';
+import Chart from '@/components/UI/Chart/Chart';
+import {IAsset} from '@/types/api';
+import {IListItem, line} from '@/types/ui';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
+import Checkbox from '@/components/UI/Checkbox/Checkbox';
+import List, {ListModes} from '@/components/UI/List/List';
+import AddModal from '@/components/Common/BuyingModal/BuyingModal';
 import {BsPlusSquareFill} from 'react-icons/bs';
-import {Main} from 'pages/Currency/Currency.styled';
+import {Main} from '@/pages/Currency/Currency.styled';
 import {ChartData} from 'chart.js';
-import {Loader} from 'components/UI/Loader/Loader.styled';
-import {chartOptions, getChartData} from 'utils/chart';
-import {useGetAssetOneQuery, useGetHistoryQuery} from 'api/endPoints';
-import {getCurrencyList} from 'pages/Currency/currency.data';
-import {getArgsHistory} from 'utils/currency';
-import {useActions} from 'hooks/useActions';
+import {Loader} from '@/components/UI/Loader/Loader.styled';
+import {chartOptions, getChartData} from '@/utils/chart';
+import {useGetAssetOneQuery, useGetHistoryQuery} from '@/api/endPoints';
+import {getCurrencyList} from '@/pages/Currency/currency.data';
+import {getArgsHistory} from '@/utils/currency';
+import {useActions} from '@/hooks/useActions';
 
 const Currency: FC = () => {
   const {id} = useParams();

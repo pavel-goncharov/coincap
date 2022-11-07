@@ -1,7 +1,7 @@
 import {useDispatch} from 'react-redux';
 import {bindActionCreators} from '@reduxjs/toolkit';
-import {TypedDispatch} from 'store/store';
-import Slices from 'store/index.slice';
+import {TypedDispatch} from '@/store/store';
+import Slices from '@/store/index.slice';
 
 const useTypedDispatch = () => useDispatch<TypedDispatch>();
 

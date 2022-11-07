@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Container} from 'components/UI/Checkbox/Checkbox.styled';
+import {Container} from '@/components/UI/Checkbox/Checkbox.styled';
 
 interface ICheckbox {
   title?: string;

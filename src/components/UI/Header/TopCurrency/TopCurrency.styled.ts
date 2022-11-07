@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {Aligns, flex} from 'styles/mixins/flex';
-import {Colors, Fonts} from 'styles/vars';
+import {Aligns, flex} from '@/styles/mixins/flex';
+import {Colors, Fonts} from '@/styles/vars';
 
 interface ISpanDiff {
   color: Colors;

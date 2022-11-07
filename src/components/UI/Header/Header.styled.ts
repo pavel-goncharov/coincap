@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {Aligns, flex, Justifys} from 'styles/mixins/flex';
-import {Colors} from 'styles/vars';
+import {Aligns, flex, Justifys} from '@/styles/mixins/flex';
+import {Colors} from '@/styles/vars';
 
 export const Container = styled.header`
   height: 68px;

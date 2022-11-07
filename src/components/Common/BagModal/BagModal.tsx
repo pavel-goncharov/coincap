@@ -1,15 +1,15 @@
 import {FC, Fragment} from 'react';
-import Button, {BtnModes} from 'components/UI/Button/Button';
-import {CurrencyTitleModes} from 'components/Common/CurrencyTitle/CurrencyTitle';
-import {Modal} from 'components/UI/Modal/Modal';
-import {IListItem} from 'types/ui';
-import {ListItem} from 'components/Common/BagModal/BagModal.styled';
-import List, {ListModes} from 'components/UI/List/List';
-import CurrencyTitle from 'components/Common/CurrencyTitle/CurrencyTitle';
-import {useTypedSelector} from 'hooks/useTypedSelector';
-import {getCurrencyInfo, getTotalCostBag, isSpent} from 'utils/bag';
-import {ICurrency} from 'types/bag';
-import {useActions} from 'hooks/useActions';
+import Button, {BtnModes} from '@/components/UI/Button/Button';
+import {CurrencyTitleModes} from '@/components/Common/CurrencyTitle/CurrencyTitle';
+import {Modal} from '@/components/UI/Modal/Modal';
+import {IListItem} from '@/types/ui';
+import {ListItem} from '@/components/Common/BagModal/BagModal.styled';
+import List, {ListModes} from '@/components/UI/List/List';
+import CurrencyTitle from '@/components/Common/CurrencyTitle/CurrencyTitle';
+import {useTypedSelector} from '@/hooks/useTypedSelector';
+import {getCurrencyInfo, getTotalCostBag, isSpent} from '@/utils/bag';
+import {ICurrency} from '@/types/bag';
+import {useActions} from '@/hooks/useActions';
 import {BsFillTrashFill} from 'react-icons/bs';
 
 interface IBagModal {
