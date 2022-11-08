@@ -24,7 +24,7 @@ export const Content = styled.table`
     padding: 5px;
     text-align: left;
 
-    &:first-child {
+    &:first-of-type {
       width: 50px;
     }
 

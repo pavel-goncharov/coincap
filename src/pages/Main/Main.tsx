@@ -4,8 +4,7 @@ import {IAsset} from '@/types/api';
 import {IMainTableItem} from '@/types/ui';
 import AddModal from '@/components/Common/BuyingModal/BuyingModal';
 import {calcTableValue} from '@/utils/table';
-import Button, {BtnModes} from '@/components/UI/Button/Button';
-import {BsPlusSquareFill} from 'react-icons/bs';
+import Button, {BtnIconKeys} from '@/components/UI/Button/Button';
 import CurrencyTitle, {CurrencyTitleModes} from '@/components/Common/CurrencyTitle/CurrencyTitle';
 import {useTypedSelector} from '@/hooks/useTypedSelector';
 import {useActions} from '@/hooks/useActions';
@@ -36,8 +35,7 @@ const Main: FC = () => {
       columns: {
         addButton: 
           <Button
-            mode={BtnModes.ICON}
-            icon={<BsPlusSquareFill/>}
+            iconKey={BtnIconKeys.PLUS}
             handler={(e) => handlerAddBtn(e, cryptoInfo)}
             key={cryptoInfo.id}
           />,

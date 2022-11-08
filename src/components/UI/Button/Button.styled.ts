@@ -5,91 +5,86 @@ import {BtnModes} from '@/components/UI/Button/Button';
 
 interface IButton {
   mode: BtnModes;
+  isRemove: boolean;
 }
 
 export const Container = styled.button<IButton>`
-  padding: 0;
+  min-height: 26px;
   border: none;
   border-radius: 5px;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  background-color: inherit;
-  color: inherit;
   cursor: pointer;
-  ${flex({jc: Justifys.CENTER, ai: Aligns.CENTER, g: '10px'})}
+  color: ${Colors.WHITE};
 
-  &:hover {
-    svg {
-      fill: ${Colors.PURPLE};
-    }
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
-
-  > span {
-    font-family: ${Fonts.INTER_SEMIBOLD};
-  }
-
-  svg {
-    fill: ${Colors.DARK_BLUE};
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-  
   ${(props) => {
     switch (props.mode) {
-      case BtnModes.ICON:
-        return css`
-          &:disabled {
-            svg{
-              fill: ${Colors.GRAY};
-            }
-          }
-        `;
-      case BtnModes.TITLE:
+      case BtnModes.TEXT:
         return css`
           padding: 5px 20px;
           font-size: 1rem;
+          line-height: 1rem;
           background-color: ${Colors.DARK_BLUE};
-          color: ${Colors.WHITE};
-
+  
           &:hover {
-            background-color: ${Colors.PURPLE};
+            background-color: ${props.isRemove ? Colors.RED : Colors.PURPLE};
           }
 
           &:disabled {
             background-color: ${Colors.GRAY};
           }
         `;
-      case BtnModes.DOUBLE:
+      case BtnModes.ICON:
         return css`
-          padding: 5px 10px;
-          background-color: ${Colors.DARK_BLUE};
-          color: ${Colors.WHITE};
+          padding: 0;
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          background-color: ${Colors.WHITE};
+          
+          svg {
+            height: 1.5rem;
+            width: 1.5rem;
+            fill: ${Colors.DARK_BLUE};
 
-          svg{
-            fill: ${Colors.WHITE};
+            &:hover {
+              fill: ${props.isRemove ? Colors.RED : Colors.PURPLE};
+            }
           }
 
-          &:hover {
-            background-color: ${Colors.PURPLE};
-
-            svg{
-              fill: ${Colors.WHITE};
+          &:disabled {
+            svg {
+              fill: ${Colors.GRAY};
             }
           }
         `;
-      case BtnModes.REMOVE:
+      case BtnModes.DOUBLE:
         return css`
+          padding: 5px 10px;
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          background-color: ${Colors.DARK_BLUE};
+  
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+
           &:hover {
-            svg {
-              fill: ${Colors.RED};
-            }
+            background-color: ${props.isRemove ? Colors.RED : Colors.PURPLE};
+          }
+
+          &:disabled {
+            background-color: ${Colors.GRAY};
           }
         `;
       }
     }
+  }
+  ${flex({jc: Justifys.CENTER, ai: Aligns.CENTER, g: '10px'})}
+
+  > span {
+    font-family: ${Fonts.INTER_SEMIBOLD};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 `;

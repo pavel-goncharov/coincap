@@ -1,8 +1,7 @@
 import {FC, useEffect, useState} from 'react';
 import {Container, Content, PagButton} from '@/components/UI/Pagination/Pagination.styled';
 import {IPagination} from '@/types/ui';
-import Button, {BtnModes} from '@/components/UI/Button/Button';
-import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs';
+import Button, {BtnIconKeys} from '@/components/UI/Button/Button';
 import {useTypedSelector} from '@/hooks/useTypedSelector';
 import {useActions} from '@/hooks/useActions';
 import {getItem, setItem} from '@/utils/localStorage';
@@ -54,9 +53,8 @@ const Pagination: FC<IPagination> = (props) => {
   return (
     <Container>
       <Content>
-        <Button 
-          mode={BtnModes.ICON}
-          icon={<BsFillArrowLeftSquareFill/>}
+        <Button
+          iconKey={BtnIconKeys.LEFT_ARROW}
           handler={goToPrevPage}
           disabled={isFirstPage}
         />
@@ -73,8 +71,7 @@ const Pagination: FC<IPagination> = (props) => {
           )}
         </ul>
         <Button 
-          mode={BtnModes.ICON}
-          icon={<BsFillArrowRightSquareFill/>}
+          iconKey={BtnIconKeys.RIGHT_ARROW}
           handler={goToNextPage}
           disabled={isLastPage}
         />

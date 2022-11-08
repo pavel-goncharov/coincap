@@ -11,7 +11,7 @@ export const Container = styled.ul<IList>`
   > li {
     ${flex()}
     > span {
-      &:first-child {
+      &:first-of-type {
         font-family: ${Fonts.INTER_BOLD};
         text-transform: uppercase;
       }
@@ -37,7 +37,7 @@ export const Container = styled.ul<IList>`
             }
 
             > span {
-              &:first-child {
+              &:first-of-type {
                 width: 131px;
               }
             }
@@ -51,7 +51,7 @@ export const Container = styled.ul<IList>`
           > li {
             gap: 0 5px;
             > span {
-              &:first-child {
+              &:first-of-type {
                 width: 39px;
                 color: ${Colors.PURPLE};
               }
@@ -68,7 +68,7 @@ export const Container = styled.ul<IList>`
             gap: 0 5px;
             font-size: 0.875rem;
             > span {
-              &:first-child {
+              &:first-of-type {
                 width: 51px;
               }
             }

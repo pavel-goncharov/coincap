@@ -1,5 +1,5 @@
 import {FC, Fragment} from 'react';
-import Button, {BtnModes} from '@/components/UI/Button/Button';
+import Button, {BtnIconKeys} from '@/components/UI/Button/Button';
 import {CurrencyTitleModes} from '@/components/Common/CurrencyTitle/CurrencyTitle';
 import {Modal} from '@/components/UI/Modal/Modal';
 import {IListItem} from '@/types/ui';
@@ -10,7 +10,6 @@ import {useTypedSelector} from '@/hooks/useTypedSelector';
 import {getCurrencyInfo, getTotalCostBag, isSpent} from '@/utils/bag';
 import {ICurrency} from '@/types/bag';
 import {useActions} from '@/hooks/useActions';
-import {BsFillTrashFill} from 'react-icons/bs';
 
 interface IBagModal {
   isActive: boolean;
@@ -48,9 +47,9 @@ const BagModal: FC<IBagModal> = (props) => {
                     symbol={cur.symbol}
                   />
                   <Button
-                    mode={BtnModes.REMOVE}
                     handler={() => sellHandler(cur.id)}
-                    icon={<BsFillTrashFill/>}
+                    iconKey={BtnIconKeys.TRASH}
+                    isRemove={true}
                   />
                 </div> 
                 <List mode={ListModes.BAG_CURRENCY} items={getCurrencyInfo(cur)}/>

@@ -65,8 +65,7 @@ const AddModal: FC<IAddModal> = (props) => {
         />
         <p>{hintStr}</p>
         <Button
-          type={BtnTypes.submit}
-          mode={BtnModes.TITLE}
+          type={BtnTypes.SUBMIT}
           title={btnTitle}
           handler={handlerOnSubmit}
         />          

@@ -11,7 +11,7 @@ export const Container = styled.div<ICurrencyTitle>`
   ${flex({ai: Aligns.CENTER, g: '10px'})}
   
   > div {
-    &:first-child {
+    &:first-of-type {
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -47,7 +47,7 @@ export const Container = styled.div<ICurrencyTitle>`
 
           @media (max-width: 576px) {
             > div {
-              &:first-child {
+              &:first-of-type {
                 width: 22px;
                 height: 22px;
               }

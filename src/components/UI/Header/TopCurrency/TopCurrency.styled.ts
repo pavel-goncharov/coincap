@@ -22,7 +22,7 @@ export const Container = styled.ul`
 
     > span {
       white-space: nowrap;
-      &:first-child {
+      &:first-of-type {
       font-family: ${Fonts.INTER_SEMIBOLD};
         color: ${Colors.PURPLE};
       }
