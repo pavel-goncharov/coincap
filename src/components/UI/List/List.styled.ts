@@ -32,7 +32,7 @@ export const Container = styled.ul<IList>`
             gap: 0px 20px;
             font-size: 1rem;
 
-            &:not(:last-child) {
+            &:not(:last-of-type) {
               margin-bottom: 10px;
             }
 
@@ -52,11 +52,7 @@ export const Container = styled.ul<IList>`
             gap: 0 5px;
             > span {
               &:first-of-type {
-                width: 39px;
                 color: ${Colors.PURPLE};
-              }
-              &:nth-child(2) {
-                width: auto;
               }
             }
           }

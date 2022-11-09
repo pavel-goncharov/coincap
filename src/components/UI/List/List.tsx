@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {IListItem} from '@/types/ui';
 import {Container} from '@/components/UI/List/List.styled';
 
-export const enum ListModes {
+export enum ListModes {
   CURRENCY_PAGE = 'currencyPage',
   BAG_HEAD = 'bagHead',
   BAG_CURRENCY = 'bagCurrency'
