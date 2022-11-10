@@ -11,13 +11,19 @@ import {useActions} from '@/hooks/useActions';
 import {Loader} from '@/components/UI/Loader/Loader.styled';
 import {useGetAssetsQuery} from '@/api/endPoints';
 import {getFirstCurrency} from '@/utils/currency';
-import {limit} from '@/api/constants';
+import {limit, totalCurrency} from '@/api/constants';
+import {RoutePaths} from '@/router/router';
+import {generatePath, useNavigate} from 'react-router-dom';
+import Pagination from '@/components/UI/Pagination/Pagination';
+import {TableContainer} from '@/components/UI/Table/Table.styled';
+
 
 const Main: FC = () => {
   const currentPage = useTypedSelector(store => store.common.mainPagItem);
   const {data: assets, isLoading} = useGetAssetsQuery({offset: getFirstCurrency(currentPage, limit), limit});
 
   const {setIsActiveBuyingModal} = useActions();
+  const navigate = useNavigate();
 
   const [currency, setCurrency] = useState<IMainTableItem[]>([]);
   const [currentCurrency, setCurrentCurrency] = useState<IAsset | null>(null);
@@ -28,6 +34,12 @@ const Main: FC = () => {
       setCurrency(cryptoInfoDataTable);
     }
   }, [assets]);
+
+
+  function goToCurrencyPage(id: string): void {
+    const pagePath = generatePath(RoutePaths.CURRENCY, {id});
+    navigate(pagePath);
+  }
 
   function getDataForCryptoTable(cryptoInfo: IAsset[]): IMainTableItem[] {
     const cryptoInfoDataTable = cryptoInfo.map(cryptoInfo => ({
@@ -72,6 +84,7 @@ const Main: FC = () => {
     'VWAP(24Hr)', 'Supply', 'Volume(24Hr)',
     'Change(24Hr)'
   ];
+
   const columnsColor: number[] = [8];
   
   if(isLoading) {
@@ -83,11 +96,18 @@ const Main: FC = () => {
       <AddModal
         currency={currentCurrency}
       />
-      <Table
-        tHeaders={tHeaders}
-        tData={currency}
-        columnsColor={columnsColor}
-      />
+      <TableContainer>
+        <Table
+          headers={tHeaders}
+          rows={currency}
+          columnsColor={columnsColor}
+          rowHandler={goToCurrencyPage}
+        />
+        <Pagination 
+          currencyPerPage={limit}
+          totalCurrency={totalCurrency}
+        />
+      </TableContainer>
     </main>
   );
 }

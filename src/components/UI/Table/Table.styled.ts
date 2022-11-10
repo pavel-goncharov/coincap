@@ -5,7 +5,7 @@ interface ITd {
   color?: Colors;
 }
 
-export const Container = styled.div`
+export const TableContainer = styled.div`
   width: 100%;
   overflow-x: auto;
   
@@ -14,7 +14,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.table`
+export const TableSt = styled.table`
   width: 100%;
   margin-bottom: 20px;
   border-collapse: collapse;
