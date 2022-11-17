@@ -20,17 +20,19 @@ export interface IHistory {
 }
 
 export interface IArgReqAssets {
-  offset?: number;
-  limit?: number;
-  ids?: string;
+  offset: number | null;
+  limit: number | null;
+  ids: string | null;
 }
 
 export interface IArgsReqAssetOne {
   id: string;
 }
 
-export interface IArgsReqHistory extends IArgsReqAssetOne {
+export interface IQueryHistory {
   interval: string; 
   start: number;
   end: number;
 }
+
+export interface IArgsReqHistory extends IArgsReqAssetOne, IQueryHistory {}

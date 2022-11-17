@@ -11,16 +11,15 @@ import {Main} from '@/pages/Currency/Currency.styled';
 import {ChartData} from 'chart.js';
 import {Loader} from '@/components/UI/Loader/Loader.styled';
 import {chartOptions, getChartData} from '@/utils/chart';
-import {useGetAssetOneQuery, useGetHistoryQuery} from '@/api/endPoints';
 import {getCurrencyList} from '@/pages/Currency/currency.data';
 import {getArgsHistory} from '@/utils/currency';
 import {useActions} from '@/hooks/useActions';
+import {trpc} from '@/api/trpc';
 
 const Currency: FC = () => {
   const {id} = useParams();
-  
-  const {data: asset, isLoading: isLoadingAsset} = useGetAssetOneQuery(id!);
-  const {data: history, isLoading: isLoadingHistory} = useGetHistoryQuery(getArgsHistory(id!));
+  const {data: asset, isLoading: isLoadingAsset} = trpc.assetOne.useQuery({id: id!});
+  const {data: history, isLoading: isLoadingHistory} = trpc.history.useQuery(getArgsHistory(id!));
 
   const {setIsActiveBuyingModal} = useActions();
 
