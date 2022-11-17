@@ -19,18 +19,18 @@ export interface IHistory {
   data: string;
 }
 
-// export interface IQueryHistory {
-//   interval: string; 
-//   start: number;
-//   end: number;
-// }
+export interface IArgReqAssets {
+  offset?: number;
+  limit?: number;
+  ids?: string;
+}
 
-// export interface IQueryAssets {
-//   offset?: number;
-//   limit?: number;
-//   ids?: string;
-// }
+export interface IArgsReqAssetOne {
+  id: string;
+}
 
-// export interface IReqParams {
-//   id: string;
-// }
+export interface IArgsReqHistory extends IArgsReqAssetOne {
+  interval: string; 
+  start: number;
+  end: number;
+}
