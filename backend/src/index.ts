@@ -1,7 +1,6 @@
 import express, {Application} from 'express';
 import cors from 'cors';
-import {tRPCMiddleware} from '@/trpc';
-
+import {tRPCMiddleware} from '@/routes';
 
 const PORT: number = 5000;
 const app: Application = express();

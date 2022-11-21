@@ -22,19 +22,19 @@ const App: FC = () => {
   const ids: string = useTypedSelector(state => state.bag.ids).join();
   // const {data: assets, isLoading} = useGetAssetsQuery({ids});
   // const [getAssetsQuery] = useLazyGetAssetsQuery();
-  const {data: assets, isLoading} = trpc.assets.useQuery({ids, offset: null, limit: null});
+  const {data: assets, isLoading} = trpc.assets.useQuery({ids});
   const {initBagState} = useActions();
 
-  const [queryClient] = useState(() => new QueryClient());
-  const [tRPCClient] = useState(() =>
-    trpc.createClient({
-      links: [
-        httpBatchLink({
-          url: 'http://localhost:5000/trpc',
-        }),
-      ],
-    }),
-  );
+  // const [queryClient] = useState(() => new QueryClient());
+  // const [tRPCClient] = useState(() =>
+  //   trpc.createClient({
+  //     links: [
+  //       httpBatchLink({
+  //         url: 'http://localhost:5000/trpc'
+  //       }),
+  //     ],
+  //   }),
+  // );
 
   useEffect(() => {
     const bagLS = getItem<IBagState>(LocalStorageKeys.BAG);
@@ -53,7 +53,7 @@ const App: FC = () => {
 
   async function updateData(bagLS: IBagState): Promise<void> {
     // const assets: IAsset[] = await getAssetsQuery({ids: bagLS.ids.join()}).unwrap();
-    const {data: assets} = trpc.assets.useQuery({ids: bagLS.ids.join(), offset: null, limit: null});
+    const {data: assets} = trpc.assets.useQuery({ids: bagLS.ids.join()});
     if(assets) {
       const updatedBag: IBagState = getDataBag(bagLS, assets);
       initBagState(updatedBag);
@@ -66,17 +66,17 @@ const App: FC = () => {
   }
 
   return (
-    <trpc.Provider client={tRPCClient} queryClient={queryClient}>
-    <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <IndexStyled/>
-      <Container>
-        <Header/>
-        <AppRouter/>
-      </Container>
-    </BrowserRouter>
-    </QueryClientProvider>
-  </trpc.Provider>
+    // <trpc.Provider client={tRPCClient} queryClient={queryClient}>
+    // <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <IndexStyled/>
+        <Container>
+          <Header/>
+          <AppRouter/>
+        </Container>
+      </BrowserRouter>
+    // </QueryClientProvider>
+  // </trpc.Provider>
   );
 }
 

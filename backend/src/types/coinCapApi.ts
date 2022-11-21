@@ -1,3 +1,5 @@
+import {z} from 'zod';
+
 export interface IAsset {
   id: string;
   rank: string;
@@ -19,20 +21,24 @@ export interface IHistory {
   data: string;
 }
 
-export interface IArgReqAssets {
-  offset: number | null;
-  limit: number | null;
-  ids: string | null;
-}
+export const zArgReqAssets = z.object({
+  offset: z.number().optional(),
+  limit: z.number().optional(),
+  ids: z.string().optional()
+});
+export type IArgReqAssets = z.infer<typeof zArgReqAssets>;
 
-export interface IArgsReqAssetOne {
-  id: string;
-}
+export const zArgsReqAssetOne = z.object({
+  id: z.string()
+});
+export type IArgsReqAssetOne = z.infer<typeof zArgsReqAssetOne>;
 
-export interface IQueryHistory {
-  interval: string; 
-  start: number;
-  end: number;
-}
+const zQueryHistory = z.object({
+  interval: z.string(),
+  start: z.number(),
+  end: z.number()
+});
+export type IQueryHistory = z.infer<typeof zQueryHistory>;
 
-export interface IArgsReqHistory extends IArgsReqAssetOne, IQueryHistory {}
+export const zArgsReqHistory = z.intersection(zArgsReqAssetOne, zQueryHistory);
+export type IArgsReqHistory = z.infer<typeof zArgsReqHistory>;

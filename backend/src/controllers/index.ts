@@ -1,6 +1,8 @@
 import axios from 'axios'
-import {IArgReqAssets, IAsset, IArgsReqAssetOne, IArgsReqHistory, IHistory, IQueryHistory} from '@/types/coinCapApi';
-import {getIdCoincapPath} from '@/utils';
+// import {IArgReqAssets, IAsset, IArgsReqAssetOne, IArgsReqHistory, IHistory, IQueryHistory} from '@/types/coinCapApi';
+// import {getIdCoincapPath} from '@/utils';
+import {IArgReqAssets, IAsset, IArgsReqAssetOne, IArgsReqHistory, IHistory, IQueryHistory} from '../types/coinCapApi';
+import {getIdCoincapPath} from '../utils';
 
 export enum CoinCapApiUrls {
   ASSETS = '/assets',
